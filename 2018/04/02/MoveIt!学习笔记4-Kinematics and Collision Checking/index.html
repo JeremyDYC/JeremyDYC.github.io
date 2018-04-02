@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MoveIt!学习笔记4-Kinematics and Collision Checking | 仰望星空</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="KinematicsMoveIt!使用插件基础设施，允许用户写自己的运动学算法。 Forward kinematics及jacobians已经集成到RobotState类中了。 默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。 通常，用户可以选择实现自己的运">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoveIt!学习笔记4-Kinematics and Collision Checking">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/index.html">
+<meta property="og:site_name" content="仰望星空">
+<meta property="og:description" content="KinematicsMoveIt!使用插件基础设施，允许用户写自己的运动学算法。 Forward kinematics及jacobians已经集成到RobotState类中了。 默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。 通常，用户可以选择实现自己的运">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-02T14:33:36.102Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MoveIt!学习笔记4-Kinematics and Collision Checking">
+<meta name="twitter:description" content="KinematicsMoveIt!使用插件基础设施，允许用户写自己的运动学算法。 Forward kinematics及jacobians已经集成到RobotState类中了。 默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。 通常，用户可以选择实现自己的运">
+  
+    <link rel="alternate" href="/atom.xml" title="仰望星空" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">仰望星空</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JeremyDYC.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MoveIt!学习笔记4-Kinematics and Collision Checking" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/" class="article-date">
+  <time datetime="2018-04-02T14:30:06.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MoveIt!学习笔记4-Kinematics and Collision Checking
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Kinematics"><a href="#Kinematics" class="headerlink" title="Kinematics"></a>Kinematics</h2><p>MoveIt!使用插件基础设施，允许用户写自己的运动学算法。</p>
+<p>Forward kinematics及jacobians已经集成到RobotState类中了。</p>
+<p>默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。</p>
+<p>通常，用户可以选择实现自己的运动学解析器。一种常用的方法是用IKFast package生成机器人运行所需的C++代码。</p>
+<h2 id="Collision-Checking"><a href="#Collision-Checking" class="headerlink" title="Collision Checking"></a>Collision Checking</h2><p>MoveIt!的碰撞检测用CollisionWorld对象配置在Planning Scene中，执行碰撞检测的库主要是FCL package。</p>
+<p>MoveIt!支持不同类型对象的碰撞检测，包含：</p>
+<p>1 Meshes</p>
+<p>2 Primitive Shapes：例如boxes，cylinders，cones，spheres，planes</p>
+<p>3 Octomap：Octomap对象可以直接用于碰撞检测</p>
+<h2 id="Allowed-Collision-Matrix（ACM）"><a href="#Allowed-Collision-Matrix（ACM）" class="headerlink" title="Allowed Collision Matrix（ACM）"></a>Allowed Collision Matrix（ACM）</h2><p>碰撞检测是一项非常昂贵的操作，通常会花费运动规划过程接近90%的算力。ACM编码二进制值，指示机器人本体中某两部分是否需要进行碰撞检测。如果某两部分在ACM中对应的值为1，说明这两部分不需要进行碰撞检测。例如，机器人本体中两部分可能相距特别远，不可能发生碰撞。</p>
+<h2 id="Time-Parameterization"><a href="#Time-Parameterization" class="headerlink" title="Time Parameterization"></a>Time Parameterization</h2><p>Motion Planner通常只会生成路径，并不会包含时间信息。MoveIt!包含一个trajectory processing routine，可以处理这些路径以生成服从关节最大速度与加速度约束，并进行time-parameterized的轨迹，其中速度与加速度限制从机器人的joint_limits.yaml文件中读取。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/" data-id="cjfic4vof0003rcvbobelg82t" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/02/MoveIt!学习笔记3-Planning Scene/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MoveIt!学习笔记3-Planning Scene</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/">MoveIt!学习笔记4-Kinematics and Collision Checking</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记3-Planning Scene/">MoveIt!学习笔记3-Planning Scene</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记2-Motion Planning/">MoveIt!学习笔记2-Motion Planning</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记1-System Architecture/">MoveIt!学习笔记1-System Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/01/ROS学习笔记1-什么是ROS/">ROS学习笔记1-什么是ROS?</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Jeremy Dong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
