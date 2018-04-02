@@ -696,6 +696,14 @@
 <h2 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a>User Interface</h2><p>MoveGroup提供一系列ROS actions，services，topics与User Interface进行交互。用户可以通过C++实现的move_group_interface，python实现的moveit_commander及RViz的MoveIt!插件Motion Planning与MoveGroup进行交互。</p>
 <h2 id="ROS-Param-Server"><a href="#ROS-Param-Server" class="headerlink" title="ROS Param Server"></a>ROS Param Server</h2><p>ROS Param Server则向MoveGroup提供机器人的URDF，SRDF及其它配置参数。配置参数包括关节限制，运动学参数，运动规划参数，感知及其它信息等，配置文件由MoveIt! setup assistant生成并放在config文件夹中。</p>
 <p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0012.jpg" alt="" title="MoveIt! System Architecture"></p>
+<h2 id="Robot-Interface"><a href="#Robot-Interface" class="headerlink" title="Robot Interface"></a>Robot Interface</h2><p>MoveGroup通过ROS topics及actions与Robot进行交互，获取机器人当前状态信息（如关节位置），点云信息及其它传感器信息，并与机器人Controller进行交互。</p>
+<h3 id="Joint-State-Information"><a href="#Joint-State-Information" class="headerlink" title="Joint State Information"></a><em>Joint State Information</em></h3><p>MoveGroup通过接收/joint_states topic确定机器人每个关节位置，MoveGroup可以同时接收多个publishers发布的/joint_states topic，即使这些publishers发布的只是局部的机器人状态信息，如两个publishers分别发布arm与移动底盘的状态信息。</p>
+<p>关节状态publisher是在Robot侧实现的，MoveGroup并不构建joint state publisher。</p>
+<h3 id="Transform-Information"><a href="#Transform-Information" class="headerlink" title="Transform Information"></a><em>Transform Information</em></h3><p>MoveGroup使用ROS TF库监测变换信息，以此来获取机器人pose的全局信息（例如，ROS navigation stack会将map frame与base frame之间的变换发布到TF）。</p>
+<p>MoveGroup只接收TF信息，因此我们需要在Robot侧构建robot_state_publisher节点发布TF信息。</p>
+<h3 id="Controller-Interface"><a href="#Controller-Interface" class="headerlink" title="Controller Interface"></a><em>Controller Interface</em></h3><p>MoveGroup使用FollowJointTrajectoryAction接口与Robot controller进行交互。Robot侧需要设置FollowJointTrajectoryAction的server，MoveGroup则会实例化client与server进行交互。</p>
+<h3 id="Planning-Scene"><a href="#Planning-Scene" class="headerlink" title="Planning Scene"></a><em>Planning Scene</em></h3><p>MoveGroup使用Planning Scene Monitor维护planning scene，planning scene是对机器人周边环境及当前机器人状态的呈现，其中机器人状态包含机器人抓取的物体。</p>
+<h3 id="Extensible-Capabilities"><a href="#Extensible-Capabilities" class="headerlink" title="Extensible Capabilities"></a><em>Extensible Capabilities</em></h3><p>MoveGroup容易进行扩展，像抓取放置功能、运动学、运动规划都通过插件的形式实现，这些插件通过ROS yaml参数进行配置，并使用了ROS pluginlib库。通常我们不需要手动对这些插件进行配置，使用MoveIt! Setup Assistant构建MoveIt! package的时候会自动配置。</p>
 
           
         
