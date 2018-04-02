@@ -566,14 +566,34 @@
 <p>碰撞探测（包含自碰撞探测self-collisions）默认执行。</p>
 <p>我们可以将物体附着到末端执行器或机器人其它部位。例如，当机械臂抓取物体之后，我们可以将该物体附着到末端执行器，这使motion planner规划路径的时候考虑被抓取的物体的运动。</p>
 <p>我们也可以指定希望motion planner进行检查的约束，MoveIt!提供的内置约束是kinematic约束：</p>
-<p>1 Position constraints - 限制某一link的位置在某一空间区域内</p>
-<p>2 Orientation constraints - 限制某一link的方向在指定的rpy角度范围内</p>
-<p>3 Visibility constraints - 限制某一link上的某一点在指定传感器的可见范围内</p>
-<p>4 Joint constraints - 限制关节角度位于指定的值之间</p>
-<p>5 User-specified constraints - 使用用户定义callback指定自己设定的约束</p>
+<ol>
+<li><p>Position constraints - 限制某一link的位置在某一空间区域内</p>
+</li>
+<li><p>Orientation constraints - 限制某一link的方向在指定的rpy角度范围内</p>
+</li>
+<li><p>Visibility constraints - 限制某一link上的某一点在指定传感器的可见范围内</p>
+</li>
+<li><p>Joint constraints - 限制关节角度位于指定的值之间</p>
+</li>
+<li><p>User-specified constraints - 使用用户定义callback指定自己设定的约束</p>
+</li>
+</ol>
 <h2 id="The-Motion-Plan-Result"><a href="#The-Motion-Plan-Result" class="headerlink" title="The Motion Plan Result"></a>The Motion Plan Result</h2><p>MoveGroup节点会生成要求的轨迹以响应motion plan request，轨迹会将arm移动到要求的位姿。</p>
 <p>MoveGroup生成的是轨迹（Trajectory）而不仅仅是路径（Path），MoveGroup会使用要求的最大速度和加速度生成轨迹，轨迹在关节级别会服从速度与加速度约束。</p>
-<h2 id="The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters"><a href="#The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters" class="headerlink" title="The Motion Planning Pipeline:Motion planners and Plan Request Adapters"></a>The Motion Planning Pipeline:Motion planners and Plan Request Adapters</h2>
+<h2 id="The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters"><a href="#The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters" class="headerlink" title="The Motion Planning Pipeline:Motion planners and Plan Request Adapters"></a>The Motion Planning Pipeline:Motion planners and Plan Request Adapters</h2><p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.002.jpg" alt="" title="Motion Planning Pipeline"></p>
+<p>完整的motion planning pipeline chains将motion planner与planning request adapters组合到一起。Planning request adapters可以分别预处理motion plan requests及后置处理motion plan responses。</p>
+<p>预处理在一些情形下比较有用，例如，机器人的起始状态稍微超出机器人指定的关节限制。</p>
+<p>后置处理则在其它一些情形下比较有用，例如，将生成的路径转换为time-parameterized的轨迹。</p>
+<p>MoveIt!提供一系列默认的motion planning adapters，每一种都执行特定的功能：</p>
+<h3 id="1-FixStartStateBounds"><a href="#1-FixStartStateBounds" class="headerlink" title="1 FixStartStateBounds"></a><em>1 FixStartStateBounds</em></h3><p>当实际机器人的关节限制没有进行合适的配置的情况下，机器人最终停到某一配置时，会有一个或多个关节稍微的超出关节限制，此时，motion planner无法进行规划，因为它认为机器人的起始状态超出了关节限制，这种情况下可以使用FixStartStateBounds适配器。</p>
+<p>FixStartStateBounds适配器会移动Robot，使关节到达URDF文件指定的关节限制中。当然，这种方式不是在任何情况下都起作用的，例如，关节超出了关节限制很多的情形。适配器的参数可以指定关节超出关节限制多少的情况下是可被修复的。</p>
+<h3 id="2-FixWorkspaceBounds"><a href="#2-FixWorkspaceBounds" class="headerlink" title="2 FixWorkspaceBounds"></a><em>2 FixWorkspaceBounds</em></h3><p>FixWorkspaceBounds会指定默认的工作空间用于规划：10m<em>10m</em>10m的立方体。这个工作空间只有当motion planning request没有指定工作空间参数时才会指定。</p>
+<h3 id="3-FixStartStateCollision"><a href="#3-FixStartStateCollision" class="headerlink" title="3 FixStartStateCollision"></a><em>3 FixStartStateCollision</em></h3><p>FixStartStateCollision会通过微调关节值，在可能发生碰撞的指定的配置空间中采样获取新的无碰撞的配置。</p>
+<p>通过“jiggle_factor”参数指定关节扰动量，控制扰动成为关节总的移动范围的某一百分比。该适配器的其它参数指定适配器在放弃之前进行多少随机扰动采样。</p>
+<h3 id="4-FixStartStatePathConstraints"><a href="#4-FixStartStatePathConstraints" class="headerlink" title="4 FixStartStatePathConstraints"></a><em>4 FixStartStatePathConstraints</em></h3><p>FixStartStatePathConstraints在某一motion plan的起始状态不符合指定的路径约束时起作用。适配器会在机器人当前配置与服从路径约束的新位置之间规划一条新的路径。而新位置则作为规划的起始状态。</p>
+<h3 id="5-AddTimeParameterization"><a href="#5-AddTimeParameterization" class="headerlink" title="5 AddTimeParameterization"></a><em>5 AddTimeParameterization</em></h3><p>Motion Planner通常生成“kinematic paths”，例如，生成的路径并不服从任何的速度与加速度约束，而且并没有进行时间参数化。而AddTimeParameterization适配器则会构建服从速度与加速度约束且“time parameterize”的轨迹。</p>
+<h2 id="OMPL"><a href="#OMPL" class="headerlink" title="OMPL"></a>OMPL</h2><p>OMPL（Open Motion Planning Library）是开源的运动规划库，主要实现随机化的运动规划器。MoveIt!直接集成OMPL并使用其中的运动规划器作为默认的规划器。OMPL中的规划器是抽象的，例如，OMPL并没有机器人的概念。而MoveIt!则将OMPL作为后端运行来解决机器人相关的问题。</p>
+
           
         
       
