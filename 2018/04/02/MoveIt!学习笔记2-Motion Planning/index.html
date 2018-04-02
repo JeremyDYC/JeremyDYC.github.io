@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>MoveIt!学习笔记2-Motion Planning | 仰望星空</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="The Motion Planning PluginMoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。 MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MoveIt!学习笔记2-Motion Planning">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记2-Motion Planning/index.html">
+<meta property="og:site_name" content="仰望星空">
+<meta property="og:description" content="The Motion Planning PluginMoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。 MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-02T14:22:23.491Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MoveIt!学习笔记2-Motion Planning">
+<meta name="twitter:description" content="The Motion Planning PluginMoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。 MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt">
+  
+    <link rel="alternate" href="/atom.xml" title="仰望星空" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">仰望星空</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://JeremyDYC.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MoveIt!学习笔记2-Motion Planning" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/04/02/MoveIt!学习笔记2-Motion Planning/" class="article-date">
+  <time datetime="2018-04-02T14:09:32.000Z" itemprop="datePublished">2018-04-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MoveIt!学习笔记2-Motion Planning
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="The-Motion-Planning-Plugin"><a href="#The-Motion-Planning-Plugin" class="headerlink" title="The Motion Planning Plugin"></a>The Motion Planning Plugin</h2><p>MoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。</p>
+<p>MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt!通过MoveIt!设置助手与OMPL进行交互。</p>
+<h2 id="The-Motion-Plan-Request"><a href="#The-Motion-Plan-Request" class="headerlink" title="The Motion Plan Request"></a>The Motion Plan Request</h2><p>Motion plan request清晰的指定我们希望motion planner做的事情。</p>
+<p>通常，我们会请求motion planner将arm移动到不同的位置（在关节空间中）或将end-effector移动到新的pose。</p>
+<p>碰撞探测（包含自碰撞探测self-collisions）默认执行。</p>
+<p>我们可以将物体附着到末端执行器或机器人其它部位。例如，当机械臂抓取物体之后，我们可以将该物体附着到末端执行器，这使motion planner规划路径的时候考虑被抓取的物体的运动。</p>
+<p>我们也可以指定希望motion planner进行检查的约束，MoveIt!提供的内置约束是kinematic约束：</p>
+<p>1 Position constraints - 限制某一link的位置在某一空间区域内</p>
+<p>2 Orientation constraints - 限制某一link的方向在指定的rpy角度范围内</p>
+<p>3 Visibility constraints - 限制某一link上的某一点在指定传感器的可见范围内</p>
+<p>4 Joint constraints - 限制关节角度位于指定的值之间</p>
+<p>5 User-specified constraints - 使用用户定义callback指定自己设定的约束</p>
+<h2 id="The-Motion-Plan-Result"><a href="#The-Motion-Plan-Result" class="headerlink" title="The Motion Plan Result"></a>The Motion Plan Result</h2><p>MoveGroup节点会生成要求的轨迹以响应motion plan request，轨迹会将arm移动到要求的位姿。</p>
+<p>MoveGroup生成的是轨迹（Trajectory）而不仅仅是路径（Path），MoveGroup会使用要求的最大速度和加速度生成轨迹，轨迹在关节级别会服从速度与加速度约束。</p>
+<h2 id="The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters"><a href="#The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters" class="headerlink" title="The Motion Planning Pipeline:Motion planners and Plan Request Adapters"></a>The Motion Planning Pipeline:Motion planners and Plan Request Adapters</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记2-Motion Planning/" data-id="cjfibqj7q0002e4vbt0yd59qy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/04/02/MoveIt!学习笔记1-System Architecture/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MoveIt!学习笔记1-System Architecture
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/04/01/ROS学习笔记1-什么是ROS/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ROS学习笔记1-什么是ROS?</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记1-System Architecture/">MoveIt!学习笔记1-System Architecture</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/02/MoveIt!学习笔记2-Motion Planning/">MoveIt!学习笔记2-Motion Planning</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/01/ROS学习笔记1-什么是ROS/">ROS学习笔记1-什么是ROS?</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/01/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Jeremy Dong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
