@@ -306,9 +306,14 @@
 <p>通常，用户可以选择实现自己的运动学解析器。一种常用的方法是用IKFast package生成机器人运行所需的C++代码。</p>
 <h2 id="Collision-Checking"><a href="#Collision-Checking" class="headerlink" title="Collision Checking"></a>Collision Checking</h2><p>MoveIt!的碰撞检测用CollisionWorld对象配置在Planning Scene中，执行碰撞检测的库主要是FCL package。</p>
 <p>MoveIt!支持不同类型对象的碰撞检测，包含：</p>
-<p>1 Meshes</p>
-<p>2 Primitive Shapes：例如boxes，cylinders，cones，spheres，planes</p>
-<p>3 Octomap：Octomap对象可以直接用于碰撞检测</p>
+<ol>
+<li><p>Meshes</p>
+</li>
+<li><p>Primitive Shapes：例如boxes，cylinders，cones，spheres，planes</p>
+</li>
+<li><p>Octomap：Octomap对象可以直接用于碰撞检测</p>
+</li>
+</ol>
 <h2 id="Allowed-Collision-Matrix（ACM）"><a href="#Allowed-Collision-Matrix（ACM）" class="headerlink" title="Allowed Collision Matrix（ACM）"></a>Allowed Collision Matrix（ACM）</h2><p>碰撞检测是一项非常昂贵的操作，通常会花费运动规划过程接近90%的算力。ACM编码二进制值，指示机器人本体中某两部分是否需要进行碰撞检测。如果某两部分在ACM中对应的值为1，说明这两部分不需要进行碰撞检测。例如，机器人本体中两部分可能相距特别远，不可能发生碰撞。</p>
 <h2 id="Time-Parameterization"><a href="#Time-Parameterization" class="headerlink" title="Time Parameterization"></a>Time Parameterization</h2><p>Motion Planner通常只会生成路径，并不会包含时间信息。MoveIt!包含一个trajectory processing routine，可以处理这些路径以生成服从关节最大速度与加速度约束，并进行time-parameterized的轨迹，其中速度与加速度限制从机器人的joint_limits.yaml文件中读取。</p>
 
