@@ -440,6 +440,19 @@
 <p>State Information：通过joint_states话题</p>
 <p>Sensor Information：使用World Geometry Monitor</p>
 <p>World geometry information：通过用户输入的planning_scene话题</p>
+<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg" alt="" title="planning scene monitor"></p>
+<h2 id="World-Geometry-Monitor"><a href="#World-Geometry-Monitor" class="headerlink" title="World Geometry Monitor"></a>World Geometry Monitor</h2><p>World Geometry Monitor使用机器人传感器信息及用户输入构建world geometry。具体来说，World Geometry Monitor使用Occupancy Map Monitor对机器人周围环境进行3D呈现，并且通过planning_scene话题的信息来向场景中增加物体信息。</p>
+<h2 id="Occupancy-Map-Monitor（3D-Perception）"><a href="#Occupancy-Map-Monitor（3D-Perception）" class="headerlink" title="Occupancy Map Monitor（3D Perception）"></a>Occupancy Map Monitor（3D Perception）</h2><p>MoveIt!通过Occupancy Map Monitor进行3D感知，Occupancy Map Monitor使用插件结构操控不同种类的传感器，MoveIt!内置支持两种类型的输入：</p>
+<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.004.jpg" alt="" title="World Geometry Monitor"></p>
+<ol>
+<li><p><em>Point clouds：</em>由point cloud occupancy map updater插件处理</p>
+</li>
+<li><p><em>Depth images：</em>由depth image occupancy map updater插件处理</p>
+</li>
+</ol>
+<p>除此之外，我们可以以插件的形式增加自己的updater类型到Occupancy Map Monitor中。</p>
+<p>Occupancy Map Monitor使用Octomap维护环境的occupancy map。Octomap可以对独立的单元编写概率信息，但MoveIt!当前没有使用这些信息。另外，Octomap可以直接传输到MoveIt!使用的碰撞探测库FCL。</p>
+<p>Depth image occupancy map updater包含自己的self-filter，它会从深度图像中移走机器人的可视化部分，主要通过机器人当前状态信息执行该操作。</p>
 
           
         
