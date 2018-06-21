@@ -301,9 +301,9 @@
         
           
             <p>最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合，而里程计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。</p>
-<p>在命令行中可以查看USB设备信息：<br>    pi@pi-desktop:~$ lsusb<br>    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Bridge / myAVR mySmartUSB light<br>    Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 004: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter<br>    Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub<br>    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</p>
-<p>原有的里程计udev规则如下：<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”motor_trd”</p>
-<p>原有的IMU udev规则如下：<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”imu_driver”</p>
+<p>在命令行中可以查看USB设备信息：<br>‘’’<br>    pi@pi-desktop:~$ lsusb<br>    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Bridge / myAVR mySmartUSB light<br>    Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 004: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter<br>    Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub<br>    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub<br>‘’’</p>
+<p>原有的里程计udev规则如下：<br>‘’’<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”motor_trd”<br>‘’’</p>
+<p>原有的IMU udev规则如下：<br>‘’’<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”imu_driver”<br>‘’’</p>
 <p>可以看到有两个USB设备的idVendor与idProduct是一样的，因此如果按照原有的udev规则使用极有可能会发生冲突，导致设备无法正常使用。</p>
 
           
