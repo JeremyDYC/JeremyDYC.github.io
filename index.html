@@ -317,6 +317,135 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 <pre><code class="bash">ATTRS{idVendor}==<span class="string">"1a86"</span>, ATTRS{idProduct}==<span class="string">"7523"</span>, MODE:=<span class="string">"0777"</span>, SYMLINK+=<span class="string">"imu_driver"</span>
 </code></pre>
 <p>可以看到有两个USB设备的idVendor与idProduct是一样的，因此如果按照原有的udev规则使用极有可能会发生冲突，导致设备无法正常使用。</p>
+<p><strong>解决方法是增加额外的信息来区分拥有相同idVendor与idProduct的设备。</strong></p>
+<p>IMU与里程计分别对应ttyUSB0与ttyUSB1。</p>
+<p>在命令行中输入以下命令可以查看IMU对应的ttyUSB0的详细信息：</p>
+<pre><code class="bash">pi@pi-desktop:~$ udevadm info --attribute-walk --path=/sys/bus/usb-serial/devices/ttyUSB0
+
+Udevadm info starts with the device specified by the devpath and <span class="keyword">then</span>
+walks up the chain of parent devices. It prints <span class="keyword">for</span> every device
+found, all possible attributes <span class="keyword">in</span> the udev rules key format.
+A rule to match, can be composed by the attributes of the device
+and the attributes from one single parent device.
+
+  looking at device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/ttyUSB0'</span>:
+    KERNEL==<span class="string">"ttyUSB0"</span>
+    SUBSYSTEM==<span class="string">"usb-serial"</span>
+    DRIVER==<span class="string">"ch341-uart"</span>
+    ATTR{port_number}==<span class="string">"0"</span>
+
+  looking at parent device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0'</span>:
+    KERNELS==<span class="string">"1-1.2:1.0"</span>
+    SUBSYSTEMS==<span class="string">"usb"</span>
+    DRIVERS==<span class="string">"ch341"</span>
+    ATTRS{authorized}==<span class="string">"1"</span>
+    ATTRS{bAlternateSetting}==<span class="string">" 0"</span>
+    ATTRS{bInterfaceClass}==<span class="string">"ff"</span>
+    ATTRS{bInterfaceNumber}==<span class="string">"00"</span>
+    ATTRS{bInterfaceProtocol}==<span class="string">"02"</span>
+    ATTRS{bInterfaceSubClass}==<span class="string">"01"</span>
+    ATTRS{bNumEndpoints}==<span class="string">"03"</span>
+    ATTRS{supports_autosuspend}==<span class="string">"1"</span>
+
+  looking at parent device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2'</span>:
+    KERNELS==<span class="string">"1-1.2"</span>
+    SUBSYSTEMS==<span class="string">"usb"</span>
+    DRIVERS==<span class="string">"usb"</span>
+    ATTRS{authorized}==<span class="string">"1"</span>
+    ATTRS{avoid_reset_quirk}==<span class="string">"0"</span>
+    ATTRS{bConfigurationValue}==<span class="string">"1"</span>
+    ATTRS{bDeviceClass}==<span class="string">"ff"</span>
+    ATTRS{bDeviceProtocol}==<span class="string">"00"</span>
+    ATTRS{bDeviceSubClass}==<span class="string">"00"</span>
+    ATTRS{bMaxPacketSize0}==<span class="string">"8"</span>
+    ATTRS{bMaxPower}==<span class="string">"96mA"</span>
+    ATTRS{bNumConfigurations}==<span class="string">"1"</span>
+    ATTRS{bNumInterfaces}==<span class="string">" 1"</span>
+    ATTRS{bcdDevice}==<span class="string">"0254"</span>
+    ATTRS{bmAttributes}==<span class="string">"80"</span>
+    ATTRS{busnum}==<span class="string">"1"</span>
+    ATTRS{configuration}==<span class="string">""</span>
+    ATTRS{devnum}==<span class="string">"4"</span>
+    ATTRS{devpath}==<span class="string">"1.2"</span>
+    ATTRS{idProduct}==<span class="string">"7523"</span>
+    ATTRS{idVendor}==<span class="string">"1a86"</span>
+    ATTRS{ltm_capable}==<span class="string">"no"</span>
+    ATTRS{maxchild}==<span class="string">"0"</span>
+    ATTRS{product}==<span class="string">"USB2.0-Serial"</span>
+    ATTRS{quirks}==<span class="string">"0x0"</span>
+    ATTRS{removable}==<span class="string">"removable"</span>
+    ATTRS{speed}==<span class="string">"12"</span>
+    ATTRS{urbnum}==<span class="string">"49768"</span>
+    ATTRS{version}==<span class="string">" 1.10"</span>
+</code></pre>
+<p>在命令行中输入以下命令可以查看里程计对应的ttyUSB1的详细信息：</p>
+<pre><code class="bash">pi@pi-desktop:~$ udevadm info --attribute-walk --path=/sys/bus/usb-serial/devices/ttyUSB1
+
+Udevadm info starts with the device specified by the devpath and <span class="keyword">then</span>
+walks up the chain of parent devices. It prints <span class="keyword">for</span> every device
+found, all possible attributes <span class="keyword">in</span> the udev rules key format.
+A rule to match, can be composed by the attributes of the device
+and the attributes from one single parent device.
+
+  looking at device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3/1-1.3:1.0/ttyUSB1'</span>:
+    KERNEL==<span class="string">"ttyUSB1"</span>
+    SUBSYSTEM==<span class="string">"usb-serial"</span>
+    DRIVER==<span class="string">"ch341-uart"</span>
+    ATTR{port_number}==<span class="string">"0"</span>
+
+  looking at parent device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3/1-1.3:1.0'</span>:
+    KERNELS==<span class="string">"1-1.3:1.0"</span>
+    SUBSYSTEMS==<span class="string">"usb"</span>
+    DRIVERS==<span class="string">"ch341"</span>
+    ATTRS{authorized}==<span class="string">"1"</span>
+    ATTRS{bAlternateSetting}==<span class="string">" 0"</span>
+    ATTRS{bInterfaceClass}==<span class="string">"ff"</span>
+    ATTRS{bInterfaceNumber}==<span class="string">"00"</span>
+    ATTRS{bInterfaceProtocol}==<span class="string">"02"</span>
+    ATTRS{bInterfaceSubClass}==<span class="string">"01"</span>
+    ATTRS{bNumEndpoints}==<span class="string">"03"</span>
+    ATTRS{supports_autosuspend}==<span class="string">"1"</span>
+
+  looking at parent device <span class="string">'/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.3'</span>:
+    KERNELS==<span class="string">"1-1.3"</span>
+    SUBSYSTEMS==<span class="string">"usb"</span>
+    DRIVERS==<span class="string">"usb"</span>
+    ATTRS{authorized}==<span class="string">"1"</span>
+    ATTRS{avoid_reset_quirk}==<span class="string">"0"</span>
+    ATTRS{bConfigurationValue}==<span class="string">"1"</span>
+    ATTRS{bDeviceClass}==<span class="string">"ff"</span>
+    ATTRS{bDeviceProtocol}==<span class="string">"00"</span>
+    ATTRS{bDeviceSubClass}==<span class="string">"00"</span>
+    ATTRS{bMaxPacketSize0}==<span class="string">"8"</span>
+    ATTRS{bMaxPower}==<span class="string">"98mA"</span>
+    ATTRS{bNumConfigurations}==<span class="string">"1"</span>
+    ATTRS{bNumInterfaces}==<span class="string">" 1"</span>
+    ATTRS{bcdDevice}==<span class="string">"0263"</span>
+    ATTRS{bmAttributes}==<span class="string">"80"</span>
+    ATTRS{busnum}==<span class="string">"1"</span>
+    ATTRS{configuration}==<span class="string">""</span>
+    ATTRS{devnum}==<span class="string">"5"</span>
+    ATTRS{devpath}==<span class="string">"1.3"</span>
+    ATTRS{idProduct}==<span class="string">"7523"</span>
+    ATTRS{idVendor}==<span class="string">"1a86"</span>
+    ATTRS{ltm_capable}==<span class="string">"no"</span>
+    ATTRS{maxchild}==<span class="string">"0"</span>
+    ATTRS{product}==<span class="string">"USB2.0-Serial"</span>
+    ATTRS{quirks}==<span class="string">"0x0"</span>
+    ATTRS{removable}==<span class="string">"removable"</span>
+    ATTRS{speed}==<span class="string">"12"</span>
+    ATTRS{urbnum}==<span class="string">"48467"</span>
+    ATTRS{version}==<span class="string">" 1.10"</span>
+</code></pre>
+<p>可以看到第三层级的设备描述信息中的KERNELS属性是不同的，因此可以用该属性对设备进行区分。</p>
+<p>修改后的IMU udev规则如下：</p>
+<pre><code class="bash">KERNEL==<span class="string">"ttyUSB*"</span>, KERNELS==<span class="string">"1-1.2"</span>, ATTRS{idVendor}==<span class="string">"1a86"</span>, ATTRS{idProduct}==<span class="string">"7523"</span>, MODE:=<span class="string">"0777"</span>, SYMLINK+=<span class="string">"imu_driver"</span>
+</code></pre>
+<p>修改后的里程计udev规则如下：</p>
+<pre><code class="bash">KERNEL==<span class="string">"ttyUSB*"</span>, KERNELS==<span class="string">"1-1.3"</span>, ATTRS{idVendor}==<span class="string">"1a86"</span>, ATTRS{idProduct}==<span class="string">"7523"</span>, MODE:=<span class="string">"0777"</span>, SYMLINK+=<span class="string">"motor_trd"</span>
+</code></pre>
+<p>修改完成之后将.rules文件放入/etc/udev/rules.d文件夹中，像USB这类热插拔设备通常需要重新插拔才能使新规则生效。</p>
+<p>More info: <a href="https://wiki.archlinux.org/index.php/Udev_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">udev</a>)</p>
 
           
         
