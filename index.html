@@ -353,139 +353,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/06/21/Linux-udev规则编写及配置1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/06/21/Linux-udev规则编写及配置1/" itemprop="url">Untitled</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T10:50:46+08:00">
-                2018-06-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <hr>
-<p>title: Linux-udev规则编写及配置<br>date: 2018-04-01 22:53:09</p>
-<h2 id="tags"><a href="#tags" class="headerlink" title="tags:"></a>tags:</h2><p>最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合,而里程计计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。<br>原有的里程计与IMU的udev规则如下：<br>‘’’<br>ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”imu_driver”<br>‘’’</p>
-<p>‘’’<br>KERNEL==”ttyUSB*”, KERNELS==”1-1.2”, ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”imu_driver”<br>‘’’</p>
-<p>‘’’<br>ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”motor_trd”<br>‘’’</p>
-<p>‘’’<br>KERNEL==”ttyUSB*”, KERNELS==”1-1.3”, ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”motor_trd”<br>‘’’</p>
-<p>在命令行中可以查看usb设备信息：<br>‘’’<br>pi@pi-desktop:~$ lsusb<br>Bus 001 Device 006: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Bridge / myAVR mySmartUSB light<br>Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>Bus 001 Device 004: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter<br>Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub<br>Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</p>
-<p>‘’’<br>可以看到有两个USB设备的idVendor与idProduct是一样的，因此如果按照原有的udev规则使用极有可能会发生冲突，导致设备无法正常使用。</p>
-<p>命令行中输入以下命令可以查看USB转串口的详细信息：<br>‘’‘<br>pi@pi-desktop:~$ udevadm info –attribute-walk –path=/sys/bus/usb-serial/devices/ttyUSB0</p>
-<p>Udevadm info starts with the device specified by the devpath and then<br>walks up the chain of parent devices. It prints for every device<br>found, all possible attributes in the udev rules key format.<br>A rule to match, can be composed by the attributes of the device<br>and the attributes from one single parent device.</p>
-<p>  looking at device ‘/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0/ttyUSB0’:<br>    KERNEL==”ttyUSB0”<br>    SUBSYSTEM==”usb-serial”<br>    DRIVER==”ch341-uart”<br>    ATTR{port_number}==”0”</p>
-<p>  looking at parent device ‘/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2/1-1.2:1.0’:<br>    KERNELS==”1-1.2:1.0”<br>    SUBSYSTEMS==”usb”<br>    DRIVERS==”ch341”<br>    ATTRS{authorized}==”1”<br>    ATTRS{bAlternateSetting}==” 0”<br>    ATTRS{bInterfaceClass}==”ff”<br>    ATTRS{bInterfaceNumber}==”00”<br>    ATTRS{bInterfaceProtocol}==”02”<br>    ATTRS{bInterfaceSubClass}==”01”<br>    ATTRS{bNumEndpoints}==”03”<br>    ATTRS{supports_autosuspend}==”1”</p>
-<p>  looking at parent device ‘/devices/platform/soc/3f980000.usb/usb1/1-1/1-1.2’:<br>    KERNELS==”1-1.2”<br>    SUBSYSTEMS==”usb”<br>    DRIVERS==”usb”<br>    ATTRS{authorized}==”1”<br>    ATTRS{avoid_reset_quirk}==”0”<br>    ATTRS{bConfigurationValue}==”1”<br>    ATTRS{bDeviceClass}==”ff”<br>    ATTRS{bDeviceProtocol}==”00”<br>    ATTRS{bDeviceSubClass}==”00”<br>    ATTRS{bMaxPacketSize0}==”8”<br>    ATTRS{bMaxPower}==”96mA”<br>    ATTRS{bNumConfigurations}==”1”<br>    ATTRS{bNumInterfaces}==” 1”<br>    ATTRS{bcdDevice}==”0254”<br>    ATTRS{bmAttributes}==”80”<br>    ATTRS{busnum}==”1”<br>    ATTRS{configuration}==””<br>    ATTRS{devnum}==”4”<br>    ATTRS{devpath}==”1.2”<br>    ATTRS{idProduct}==”7523”<br>    ATTRS{idVendor}==”1a86”<br>    ATTRS{ltm_capable}==”no”<br>    ATTRS{maxchild}==”0”<br>    ATTRS{product}==”USB2.0-Serial”<br>    ATTRS{quirks}==”0x0”<br>    ATTRS{removable}==”removable”<br>    ATTRS{speed}==”12”<br>    ATTRS{urbnum}==”49768”<br>    ATTRS{version}==” 1.10”</p>
-<p>’‘’</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1325,7 +1192,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
