@@ -437,7 +437,7 @@ and the attributes from one single parent device.
     ATTRS{urbnum}==<span class="string">"48467"</span>
     ATTRS{version}==<span class="string">" 1.10"</span>
 </code></pre>
-<p>可以看到第三层级的设备描述信息中的KERNELS属性是不同的，因此可以用该属性对设备进行区分。</p>
+<p><strong>可以看到第三层级的设备描述信息中的KERNELS属性是不同的，因此可以用该属性对设备进行区分。</strong></p>
 <p>修改后的IMU udev规则如下：</p>
 <pre><code class="bash">KERNEL==<span class="string">"ttyUSB*"</span>, KERNELS==<span class="string">"1-1.2"</span>, ATTRS{idVendor}==<span class="string">"1a86"</span>, ATTRS{idProduct}==<span class="string">"7523"</span>, MODE:=<span class="string">"0777"</span>, SYMLINK+=<span class="string">"imu_driver"</span>
 </code></pre>
@@ -445,7 +445,7 @@ and the attributes from one single parent device.
 <pre><code class="bash">KERNEL==<span class="string">"ttyUSB*"</span>, KERNELS==<span class="string">"1-1.3"</span>, ATTRS{idVendor}==<span class="string">"1a86"</span>, ATTRS{idProduct}==<span class="string">"7523"</span>, MODE:=<span class="string">"0777"</span>, SYMLINK+=<span class="string">"motor_trd"</span>
 </code></pre>
 <p>修改完成之后将.rules文件放入/etc/udev/rules.d文件夹中，像USB这类热插拔设备通常需要重新插拔才能使新规则生效。</p>
-<p>More info: <a href="https://wiki.archlinux.org/index.php/Udev" target="_blank" rel="noopener">udev</a></p>
+<p>More info: <a href="https://wiki.archlinux.org/index.php/Udev_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">udev</a>)</p>
 
           
         
