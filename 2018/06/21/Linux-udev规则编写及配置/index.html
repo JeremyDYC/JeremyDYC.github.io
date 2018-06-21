@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="仰望星空">
-<meta property="og:url" content="http://JeremyDYC.github.io/archives/2018/04/index.html">
+<meta name="description" content="最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合，而里程计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。 在命令行中可以查看USB设备信息：    pi@pi-desktop:~$ lsusb    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integ">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux-udev规则编写及配置">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/06/21/Linux-udev规则编写及配置/index.html">
 <meta property="og:site_name" content="仰望星空">
+<meta property="og:description" content="最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合，而里程计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。 在命令行中可以查看USB设备信息：    pi@pi-desktop:~$ lsusb    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integ">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-06-21T06:31:11.533Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="仰望星空">
+<meta name="twitter:title" content="Linux-udev规则编写及配置">
+<meta name="twitter:description" content="最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合，而里程计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。 在命令行中可以查看USB设备信息：    pi@pi-desktop:~$ lsusb    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integ">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/archives/2018/04/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/06/21/Linux-udev规则编写及配置/"/>
 
 
 
 
 
-  <title>Archive | 仰望星空</title>
+  <title>Linux-udev规则编写及配置 | 仰望星空</title>
   
 
 
@@ -140,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,259 +218,145 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/06/21/Linux-udev规则编写及配置/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">Linux-udev规则编写及配置</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-21T14:00:00+08:00">
+                2018-06-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-        Um..! 8 posts in total. Keep on posting.
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/" itemprop="url">
-              
-                <span itemprop="name">MoveIt!学习笔记4-Kinematics and Collision Checking</span>
-              
-            </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-02T22:30:06+08:00"
-              content="2018-04-02" >
-          04-02
-        </time>
-      </div>
+          
 
-    </header>
-  </article>
+        </div>
+      </header>
+    
 
-
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记3-Planning Scene/" itemprop="url">
-              
-                <span itemprop="name">MoveIt!学习笔记3-Planning Scene</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-02T22:27:50+08:00"
-              content="2018-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记2-Motion Planning/" itemprop="url">
-              
-                <span itemprop="name">MoveIt!学习笔记2-Motion Planning</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-02T22:24:12+08:00"
-              content="2018-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p>最近在做移动机器人的开发，需要进行里程计（odometry）与IMU的数据融合，而里程计与IMU恰好都用到了同一个厂家的USB-Serial适配器，为了区分这两款传感器需要在原有的udev规则中添加一些新的的内容。</p>
+<p>在命令行中可以查看USB设备信息：<br>    pi@pi-desktop:~$ lsusb<br>    Bus 001 Device 006: ID 10c4:ea60 Cygnal Integrated Products, Inc. CP210x UART Bridge / myAVR mySmartUSB light<br>    Bus 001 Device 005: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 004: ID 1a86:7523 QinHeng Electronics HL-340 USB-Serial adapter<br>    Bus 001 Device 003: ID 0424:ec00 Standard Microsystems Corp. SMSC9512/9514 Fast Ethernet Adapter<br>    Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub<br>    Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub</p>
+<p>原有的里程计udev规则如下：<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”motor_trd”</p>
+<p>原有的IMU udev规则如下：<br>    ATTRS{idVendor}==”1a86”, ATTRS{idProduct}==”7523”, MODE:=”0777”, SYMLINK+=”imu_driver”</p>
+<p>可以看到有两个USB设备的idVendor与idProduct是一样的，因此如果按照原有的udev规则使用极有可能会发生冲突，导致设备无法正常使用。</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记1-System Architecture/" itemprop="url">
-              
-                <span itemprop="name">MoveIt!学习笔记1-System Architecture</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-02T22:09:32+08:00"
-              content="2018-04-02" >
-          04-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/01/ROS学习笔记1-什么是ROS？/" itemprop="url">
-              
-                <span itemprop="name">ROS学习笔记1-什么是ROS?</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-01T22:53:09+08:00"
-              content="2018-04-01" >
-          04-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/04/01/hello-world/" itemprop="url">
-              
-                <span itemprop="name">Hello World</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-04-01T22:22:57+08:00"
-              content="2018-04-01" >
-          04-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/21/Linux-udev规则编写及配置1/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -474,6 +364,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -670,6 +564,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
