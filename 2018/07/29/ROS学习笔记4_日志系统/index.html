@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="仰望星空">
 <meta property="og:description" content="1 日志的生成ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&amp;lt;&amp;lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。 需要注意的是，这些标准流操作符的作用范围">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-29T06:21:09.514Z">
+<meta property="og:updated_time" content="2018-07-29T06:23:10.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ROS学习笔记4_日志系统">
 <meta name="twitter:description" content="1 日志的生成ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&amp;lt;&amp;lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。 需要注意的是，这些标准流操作符的作用范围">
@@ -305,11 +305,11 @@
 <p>ROS_INFO_STREAM宏提供了C++风格的输出流接口，ROS_INFO宏提供格式输出函数printf风格的接口。</p>
 <p>ROS_INFO_STREAM_ONCE宏内部使用static变量确保宏在第一次被调用的时候生成消息，后续再次被调用时则不产生新的消息。比如在循环中使用这个宏，那么只在第一个循环产生日志消息，后续循环不再产生。</p>
 <p>ROS_INFO_STREAM_THROTTLE(interval,message)宏通过interval指定相邻日志消息出现的最小时间间隔，第一次执行时会生成日志消息，随后必须经过大于指定的时间间隔的时间才会生成新的日志消息。</p>
-<h2 id="2-日志的查看"><a href="#2-日志的查看" class="headerlink" title="2 日志的查看"></a>2 日志的查看</h2><pre><code>通过ROSCONSOLE_FORMAT环境变量来调整日志消息打印到控制台的格式，默认格式是：
-</code></pre><pre><code class="bash">[<span class="variable">${severity}</span>][<span class="variable">${time}</span>]:<span class="variable">${message}</span>
+<h2 id="2-日志的查看"><a href="#2-日志的查看" class="headerlink" title="2 日志的查看"></a>2 日志的查看</h2><p>通过ROSCONSOLE_FORMAT环境变量来调整日志消息打印到控制台的格式，默认格式是：</p>
+<pre><code class="bash">[<span class="variable">${severity}</span>][<span class="variable">${time}</span>]:<span class="variable">${message}</span>
 </code></pre>
-<pre><code>除了默认的域，还可选择其他的域，如用${file}、${line}、${function}查看生成日志消息的源代码位置；用${node}域查看生成日志的节点名称等。
-</code></pre><p> roslaunch工具默认不会将标准输出和标准错误从其生成的节点导入至自己的输出流，为了查看节点的输出，必须显式的使用output=”screen”属性，或在命令行中roslaunch命令后使用“–screen”参数。</p>
+<p>除了默认的域，还可选择其他的域，如用${file}、${line}、${function}查看生成日志消息的源代码位置；用${node}域查看生成日志的节点名称等。</p>
+<p> roslaunch工具默认不会将标准输出和标准错误从其生成的节点导入至自己的输出流，为了查看节点的输出，必须显式的使用output=”screen”属性，或在命令行中roslaunch命令后使用“–screen”参数。</p>
 <p> /rosout节点通过/rosout话题将系统中所有节点产生的日志汇总，通过/rosout_agg话题进行发布，通常/rosout节点作为系统中唯一的日志消息订阅节点，这样可以避免系统中很多节点同时订阅/rosout话题时产生的大的系统开销。调试工具通过订阅汇总之后的/rosout_agg话题就可以获得完整的日志消息流。</p>
 <p> /rosout节点还会生成记录日志消息的日志文件，文件名类似于：</p>
 <pre><code class="bash">~/.ros/<span class="built_in">log</span>/run_id/rosout.log
