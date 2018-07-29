@@ -229,6 +229,129 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/29/ROS_学习笔记3_命名系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/ROS_学习笔记3_命名系统/" itemprop="url">ROS学习笔记3_命名系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T13:08:32+08:00">
+                2018-07-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-全局名称"><a href="#1-全局名称" class="headerlink" title="1 全局名称"></a>1 全局名称</h2><p>全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。<br>全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。</p>
+<h2 id="2-相对名称"><a href="#2-相对名称" class="headerlink" title="2 相对名称"></a>2 相对名称</h2><p>相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。<br>默认命名空间是单独地为每个节点设置的，而不是在系统范围进行。ROS默认会将全局命名空间（/）作为一个节点的默认命名空间，改变默认命名空间的最好和最常用的方法是在launch文件中使用命名空间（ns）属性：__ns:=default-namespace或ns=”default-namespace”。</p>
+<h2 id="3-私有名称"><a href="#3-私有名称" class="headerlink" title="3 私有名称"></a>3 私有名称</h2><p>私有名称使用它们的节点名称作为命名空间而不是当前默认命名空间，这是它与相对名称的区别。使用这种名称的主要目的是，有一些节点内部的资源只与本节点相关，不会与其他节点打交道，用私有名称为这些节点命名，通常是节点使用的参数，话题（Topic）通常不能以私有名称命名。</p>
+<h2 id="4-节点匿名机制"><a href="#4-节点匿名机制" class="headerlink" title="4 节点匿名机制"></a>4 节点匿名机制</h2><p>将ros::init_options::Anonymous-Name作为第四个参数传递给ros::init()，将为节点设置匿名名称，匿名不意味着节点没有名字，而是使用处理器时间（wall clock time）在节点基本名称之后追加某个额外的文本，以确保节点的名字是唯一的。因此，我们可以启动同一节点的大量副本，而不导致命名冲突。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/06/21/Linux-udev规则编写及配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -494,684 +617,6 @@ and the attributes from one single parent device.
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记4-Kinematics and Collision Checking/" itemprop="url">MoveIt!学习笔记4-Kinematics and Collision Checking</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:30:06+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Kinematics"><a href="#Kinematics" class="headerlink" title="Kinematics"></a>Kinematics</h2><p>MoveIt!使用插件基础设施，允许用户写自己的运动学算法。</p>
-<p>Forward kinematics及jacobians已经集成到RobotState类中了。</p>
-<p>默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。</p>
-<p>通常，用户可以选择实现自己的运动学解析器。一种常用的方法是用IKFast package生成机器人运行所需的C++代码。</p>
-<h2 id="Collision-Checking"><a href="#Collision-Checking" class="headerlink" title="Collision Checking"></a>Collision Checking</h2><p>MoveIt!的碰撞检测用CollisionWorld对象配置在Planning Scene中，执行碰撞检测的库主要是FCL package。</p>
-<p>MoveIt!支持不同类型对象的碰撞检测，包含：</p>
-<ol>
-<li><p>Meshes</p>
-</li>
-<li><p>Primitive Shapes：例如boxes，cylinders，cones，spheres，planes</p>
-</li>
-<li><p>Octomap：Octomap对象可以直接用于碰撞检测</p>
-</li>
-</ol>
-<h2 id="Allowed-Collision-Matrix（ACM）"><a href="#Allowed-Collision-Matrix（ACM）" class="headerlink" title="Allowed Collision Matrix（ACM）"></a>Allowed Collision Matrix（ACM）</h2><p>碰撞检测是一项非常昂贵的操作，通常会花费运动规划过程接近90%的算力。ACM编码二进制值，指示机器人本体中某两部分是否需要进行碰撞检测。如果某两部分在ACM中对应的值为1，说明这两部分不需要进行碰撞检测。例如，机器人本体中两部分可能相距特别远，不可能发生碰撞。</p>
-<h2 id="Time-Parameterization"><a href="#Time-Parameterization" class="headerlink" title="Time Parameterization"></a>Time Parameterization</h2><p>Motion Planner通常只会生成路径，并不会包含时间信息。MoveIt!包含一个trajectory processing routine，可以处理这些路径以生成服从关节最大速度与加速度约束，并进行time-parameterized的轨迹，其中速度与加速度限制从机器人的joint_limits.yaml文件中读取。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记3-Planning Scene/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记3-Planning Scene/" itemprop="url">MoveIt!学习笔记3-Planning Scene</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:27:50+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Planning-Scene-Monitor"><a href="#Planning-Scene-Monitor" class="headerlink" title="Planning Scene Monitor"></a>Planning Scene Monitor</h2><p>Planning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。</p>
-<p>Planning scene monitor接收以下信息：</p>
-<p>State Information：通过joint_states话题</p>
-<p>Sensor Information：使用World Geometry Monitor</p>
-<p>World geometry information：通过用户输入的planning_scene话题</p>
-<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg" alt="" title="planning scene monitor"></p>
-<h2 id="World-Geometry-Monitor"><a href="#World-Geometry-Monitor" class="headerlink" title="World Geometry Monitor"></a>World Geometry Monitor</h2><p>World Geometry Monitor使用机器人传感器信息及用户输入构建world geometry。具体来说，World Geometry Monitor使用Occupancy Map Monitor对机器人周围环境进行3D呈现，并且通过planning_scene话题的信息来向场景中增加物体信息。</p>
-<h2 id="Occupancy-Map-Monitor（3D-Perception）"><a href="#Occupancy-Map-Monitor（3D-Perception）" class="headerlink" title="Occupancy Map Monitor（3D Perception）"></a>Occupancy Map Monitor（3D Perception）</h2><p>MoveIt!通过Occupancy Map Monitor进行3D感知，Occupancy Map Monitor使用插件结构操控不同种类的传感器，MoveIt!内置支持两种类型的输入：</p>
-<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.004.jpg" alt="" title="World Geometry Monitor"></p>
-<ol>
-<li><p><em>Point clouds：</em>由point cloud occupancy map updater插件处理</p>
-</li>
-<li><p><em>Depth images：</em>由depth image occupancy map updater插件处理</p>
-</li>
-</ol>
-<p>除此之外，我们可以以插件的形式增加自己的updater类型到Occupancy Map Monitor中。</p>
-<p>Occupancy Map Monitor使用Octomap维护环境的occupancy map。Octomap可以对独立的单元编写概率信息，但MoveIt!当前没有使用这些信息。另外，Octomap可以直接传输到MoveIt!使用的碰撞探测库FCL。</p>
-<p>Depth image occupancy map updater包含自己的self-filter，它会从深度图像中移走机器人的可视化部分，主要通过机器人当前状态信息执行该操作。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记2-Motion Planning/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记2-Motion Planning/" itemprop="url">MoveIt!学习笔记2-Motion Planning</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:24:12+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="The-Motion-Planning-Plugin"><a href="#The-Motion-Planning-Plugin" class="headerlink" title="The Motion Planning Plugin"></a>The Motion Planning Plugin</h2><p>MoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。</p>
-<p>MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt!通过MoveIt!设置助手与OMPL进行交互。</p>
-<h2 id="The-Motion-Plan-Request"><a href="#The-Motion-Plan-Request" class="headerlink" title="The Motion Plan Request"></a>The Motion Plan Request</h2><p>Motion plan request清晰的指定我们希望motion planner做的事情。</p>
-<p>通常，我们会请求motion planner将arm移动到不同的位置（在关节空间中）或将end-effector移动到新的pose。</p>
-<p>碰撞探测（包含自碰撞探测self-collisions）默认执行。</p>
-<p>我们可以将物体附着到末端执行器或机器人其它部位。例如，当机械臂抓取物体之后，我们可以将该物体附着到末端执行器，这使motion planner规划路径的时候考虑被抓取的物体的运动。</p>
-<p>我们也可以指定希望motion planner进行检查的约束，MoveIt!提供的内置约束是kinematic约束：</p>
-<ol>
-<li><p>Position constraints - 限制某一link的位置在某一空间区域内</p>
-</li>
-<li><p>Orientation constraints - 限制某一link的方向在指定的rpy角度范围内</p>
-</li>
-<li><p>Visibility constraints - 限制某一link上的某一点在指定传感器的可见范围内</p>
-</li>
-<li><p>Joint constraints - 限制关节角度位于指定的值之间</p>
-</li>
-<li><p>User-specified constraints - 使用用户定义callback指定自己设定的约束</p>
-</li>
-</ol>
-<h2 id="The-Motion-Plan-Result"><a href="#The-Motion-Plan-Result" class="headerlink" title="The Motion Plan Result"></a>The Motion Plan Result</h2><p>MoveGroup节点会生成要求的轨迹以响应motion plan request，轨迹会将arm移动到要求的位姿。</p>
-<p>MoveGroup生成的是轨迹（Trajectory）而不仅仅是路径（Path），MoveGroup会使用要求的最大速度和加速度生成轨迹，轨迹在关节级别会服从速度与加速度约束。</p>
-<h2 id="The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters"><a href="#The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters" class="headerlink" title="The Motion Planning Pipeline:Motion planners and Plan Request Adapters"></a>The Motion Planning Pipeline:Motion planners and Plan Request Adapters</h2><p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.002.jpg" alt="" title="Motion Planning Pipeline"></p>
-<p>完整的motion planning pipeline chains将motion planner与planning request adapters组合到一起。Planning request adapters可以分别预处理motion plan requests及后置处理motion plan responses。</p>
-<p>预处理在一些情形下比较有用，例如，机器人的起始状态稍微超出机器人指定的关节限制。</p>
-<p>后置处理则在其它一些情形下比较有用，例如，将生成的路径转换为time-parameterized的轨迹。</p>
-<p>MoveIt!提供一系列默认的motion planning adapters，每一种都执行特定的功能：</p>
-<h3 id="1-FixStartStateBounds"><a href="#1-FixStartStateBounds" class="headerlink" title="1 FixStartStateBounds"></a><em>1 FixStartStateBounds</em></h3><p>当实际机器人的关节限制没有进行合适的配置的情况下，机器人最终停到某一配置时，会有一个或多个关节稍微的超出关节限制，此时，motion planner无法进行规划，因为它认为机器人的起始状态超出了关节限制，这种情况下可以使用FixStartStateBounds适配器。</p>
-<p>FixStartStateBounds适配器会移动Robot，使关节到达URDF文件指定的关节限制中。当然，这种方式不是在任何情况下都起作用的，例如，关节超出了关节限制很多的情形。适配器的参数可以指定关节超出关节限制多少的情况下是可被修复的。</p>
-<h3 id="2-FixWorkspaceBounds"><a href="#2-FixWorkspaceBounds" class="headerlink" title="2 FixWorkspaceBounds"></a><em>2 FixWorkspaceBounds</em></h3><p>FixWorkspaceBounds会指定默认的工作空间用于规划：10m<em>10m</em>10m的立方体。这个工作空间只有当motion planning request没有指定工作空间参数时才会指定。</p>
-<h3 id="3-FixStartStateCollision"><a href="#3-FixStartStateCollision" class="headerlink" title="3 FixStartStateCollision"></a><em>3 FixStartStateCollision</em></h3><p>FixStartStateCollision会通过微调关节值，在可能发生碰撞的指定的配置空间中采样获取新的无碰撞的配置。</p>
-<p>通过“jiggle_factor”参数指定关节扰动量，控制扰动成为关节总的移动范围的某一百分比。该适配器的其它参数指定适配器在放弃之前进行多少随机扰动采样。</p>
-<h3 id="4-FixStartStatePathConstraints"><a href="#4-FixStartStatePathConstraints" class="headerlink" title="4 FixStartStatePathConstraints"></a><em>4 FixStartStatePathConstraints</em></h3><p>FixStartStatePathConstraints在某一motion plan的起始状态不符合指定的路径约束时起作用。适配器会在机器人当前配置与服从路径约束的新位置之间规划一条新的路径。而新位置则作为规划的起始状态。</p>
-<h3 id="5-AddTimeParameterization"><a href="#5-AddTimeParameterization" class="headerlink" title="5 AddTimeParameterization"></a><em>5 AddTimeParameterization</em></h3><p>Motion Planner通常生成“kinematic paths”，例如，生成的路径并不服从任何的速度与加速度约束，而且并没有进行时间参数化。而AddTimeParameterization适配器则会构建服从速度与加速度约束且“time parameterize”的轨迹。</p>
-<h2 id="OMPL"><a href="#OMPL" class="headerlink" title="OMPL"></a>OMPL</h2><p>OMPL（Open Motion Planning Library）是开源的运动规划库，主要实现随机化的运动规划器。MoveIt!直接集成OMPL并使用其中的运动规划器作为默认的规划器。OMPL中的规划器是抽象的，例如，OMPL并没有机器人的概念。而MoveIt!则将OMPL作为后端运行来解决机器人相关的问题。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/MoveIt!学习笔记1-System Architecture/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/MoveIt!学习笔记1-System Architecture/" itemprop="url">MoveIt!学习笔记1-System Architecture</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T22:09:32+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="MoveGroup"><a href="#MoveGroup" class="headerlink" title="MoveGroup"></a>MoveGroup</h2><p>MoveGroup是MoveIt!提供的主要节点，它将多个独立的组件组合到一起，提供我们常用的操作，如设置关节和位姿目标，创建运动规划路径，移动机器人，向环境增加对象，向机器人增加或移除对象等。</p>
-<h2 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a>User Interface</h2><p>MoveGroup提供一系列ROS actions，services，topics与User Interface进行交互。用户可以通过C++实现的move_group_interface，python实现的moveit_commander及RViz的MoveIt!插件Motion Planning与MoveGroup进行交互。</p>
-<h2 id="ROS-Param-Server"><a href="#ROS-Param-Server" class="headerlink" title="ROS Param Server"></a>ROS Param Server</h2><p>ROS Param Server则向MoveGroup提供机器人的URDF，SRDF及其它配置参数。配置参数包括关节限制，运动学参数，运动规划参数，感知及其它信息等，配置文件由MoveIt! setup assistant生成并放在config文件夹中。</p>
-<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0012.jpg" alt="" title="MoveIt! System Architecture"></p>
-<h2 id="Robot-Interface"><a href="#Robot-Interface" class="headerlink" title="Robot Interface"></a>Robot Interface</h2><p>MoveGroup通过ROS topics及actions与Robot进行交互，获取机器人当前状态信息（如关节位置），点云信息及其它传感器信息，并与机器人Controller进行交互。</p>
-<h3 id="Joint-State-Information"><a href="#Joint-State-Information" class="headerlink" title="Joint State Information"></a><em>Joint State Information</em></h3><p>MoveGroup通过接收/joint_states topic确定机器人每个关节位置，MoveGroup可以同时接收多个publishers发布的/joint_states topic，即使这些publishers发布的只是局部的机器人状态信息，如两个publishers分别发布arm与移动底盘的状态信息。</p>
-<p>关节状态publisher是在Robot侧实现的，MoveGroup并不构建joint state publisher。</p>
-<h3 id="Transform-Information"><a href="#Transform-Information" class="headerlink" title="Transform Information"></a><em>Transform Information</em></h3><p>MoveGroup使用ROS TF库监测变换信息，以此来获取机器人pose的全局信息（例如，ROS navigation stack会将map frame与base frame之间的变换发布到TF）。</p>
-<p>MoveGroup只接收TF信息，因此我们需要在Robot侧构建robot_state_publisher节点发布TF信息。</p>
-<h3 id="Controller-Interface"><a href="#Controller-Interface" class="headerlink" title="Controller Interface"></a><em>Controller Interface</em></h3><p>MoveGroup使用FollowJointTrajectoryAction接口与Robot controller进行交互。Robot侧需要设置FollowJointTrajectoryAction的server，MoveGroup则会实例化client与server进行交互。</p>
-<h3 id="Planning-Scene"><a href="#Planning-Scene" class="headerlink" title="Planning Scene"></a><em>Planning Scene</em></h3><p>MoveGroup使用Planning Scene Monitor维护planning scene，planning scene是对机器人周边环境及当前机器人状态的呈现，其中机器人状态包含机器人抓取的物体。</p>
-<h3 id="Extensible-Capabilities"><a href="#Extensible-Capabilities" class="headerlink" title="Extensible Capabilities"></a><em>Extensible Capabilities</em></h3><p>MoveGroup容易进行扩展，像抓取放置功能、运动学、运动规划都通过插件的形式实现，这些插件通过ROS yaml参数进行配置，并使用了ROS pluginlib库。通常我们不需要手动对这些插件进行配置，使用MoveIt! Setup Assistant构建MoveIt! package的时候会自动配置。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/ROS学习笔记1-什么是ROS？/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/01/ROS学习笔记1-什么是ROS？/" itemprop="url">ROS学习笔记1-什么是ROS?</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:53:09+08:00">
-                2018-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。</p>
-<p>我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于OS的描述，可以认为ROS是管理和控制机器人硬件与软件资源的灵活的框架。</p>
-<p>ROS提供的服务包含：硬件抽象（hardware abstraction），底层设备控制（low-level device control），通用功能（commonly-used functionality），进程间消息传递（message-passing between processes）和包管理（package management）等。另外，ROS也提供了丰富的工具和库，并具有庞大的社区，这些都可以帮助开发者快速构建机器人应用。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1333,7 +778,7 @@ and the attributes from one single parent device.
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
