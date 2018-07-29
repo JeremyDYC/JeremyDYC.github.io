@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="1 日志的生成ROS_INFO_STREAM:ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&amp;lt;&amp;lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。 需要注意">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/01/HelloWorld/index.html">
+<meta property="og:title" content="ROS学习笔记4_日志系统">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记4_日志系统/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="1 日志的生成ROS_INFO_STREAM:ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&amp;lt;&amp;lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。 需要注意">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-21T06:55:27.882Z">
+<meta property="og:updated_time" content="2018-07-29T06:43:44.376Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="ROS学习笔记4_日志系统">
+<meta name="twitter:description" content="1 日志的生成ROS_INFO_STREAM:ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&amp;lt;&amp;lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。 需要注意">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记4_日志系统/"/>
 
 
 
 
 
-  <title>Hello World | 仰望星空</title>
+  <title>ROS学习笔记4_日志系统 | 仰望星空</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记4_日志系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">ROS学习笔记4_日志系统</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:22:57+08:00">
-                2018-04-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-29T13:58:17+08:00">
+                2018-07-29
               </time>
             
 
@@ -299,15 +299,24 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h2 id="1-日志的生成"><a href="#1-日志的生成" class="headerlink" title="1 日志的生成"></a>1 日志的生成</h2><p><strong>ROS_INFO_STREAM:</strong><br>ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&lt;&lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。</p>
+<p>需要注意的是，这些标准流操作符的作用范围只限于其出现的日志消息中，在其他日志消息中，任何想要使用的操作符必须重新插入。原因是ROS_INFO_STREAM这样的宏展开对应的短小代码块构造了一个标准字符串流（std::stringstream）对象，并将我们提供的参数插入这个字符串流；然后，这些代码将字符串流找那个完全格式化的内容发送至一个内部的日志系统，这个过程完成后，标准字符串流对象将被销毁，它的内部状态都将丢失。</p>
+<p>另外，message中也没必要使用std::endl等行终止符，因为日志系统本身是面向行的，调用这些宏中任意一个将生成显示为一行的一个完整的日志消息。</p>
+<p><strong>ROS_INFO:</strong><br>ROS_INFO_STREAM宏提供了C++风格的输出流接口，ROS_INFO宏提供格式输出函数printf风格的接口。</p>
+<p><strong>ROS_INFO_STREAM_ONCE:</strong><br>ROS_INFO_STREAM_ONCE宏内部使用static变量确保宏在第一次被调用的时候生成消息，后续再次被调用时则不产生新的消息。比如在循环中使用这个宏，那么只在第一个循环产生日志消息，后续循环不再产生。</p>
+<p><strong>ROS_INFO_STREAM_THROTTLE:</strong><br>ROS_INFO_STREAM_THROTTLE(interval,message)宏通过interval指定相邻日志消息出现的最小时间间隔，第一次执行时会生成日志消息，随后必须经过大于指定的时间间隔的时间才会生成新的日志消息。</p>
+<h2 id="2-日志的查看"><a href="#2-日志的查看" class="headerlink" title="2 日志的查看"></a>2 日志的查看</h2><p>通过ROSCONSOLE_FORMAT环境变量来调整日志消息打印到控制台的格式，默认格式是：</p>
+<pre><code>[${severity}][${time}]:${message}
+</code></pre><p>除了默认的域，还可选择其他的域，如用${file}、${line}、${function}查看生成日志消息的源代码位置；用${node}域查看生成日志的节点名称等。</p>
+<p> roslaunch工具默认不会将标准输出和标准错误从其生成的节点导入至自己的输出流，为了查看节点的输出，必须显式的使用output=”screen”属性，或在命令行中roslaunch命令后使用“–screen”参数。</p>
+<p> /rosout节点通过/rosout话题将系统中所有节点产生的日志汇总，通过/rosout_agg话题进行发布，通常/rosout节点作为系统中唯一的日志消息订阅节点，这样可以避免系统中很多节点同时订阅/rosout话题时产生的大的系统开销。调试工具通过订阅汇总之后的/rosout_agg话题就可以获得完整的日志消息流。</p>
+<p> /rosout节点还会生成记录日志消息的日志文件，文件名类似于：</p>
+<pre><code class="bash">~/.ros/<span class="built_in">log</span>/run_id/rosout.log
+</code></pre>
+<p>运行标识码run_id是一个通用唯一识别码（UUID），Master运行时基于计算机的MAC地址和当前的时间生成。</p>
+<p>rosclean check指令查看被ROS日志消耗的硬盘空间，rosclean purge删除所有已经存在的ROS日志。</p>
+<h2 id="3-日志级别的调整"><a href="#3-日志级别的调整" class="headerlink" title="3 日志级别的调整"></a>3 日志级别的调整</h2><p>每个节点都会提供set_logger_level服务，通过调用该服务可以调整节点产生日志的级别，ROS的C++程序默认只生成INFO或更高级别的消息。</p>
+<p>ROS程序内容可通过调用ROS实现日志功能的log4cxx提供的接口调整节点的日志级别。</p>
 
       
     </div>
@@ -332,15 +341,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/07/29/ROS学习笔记3_命名系统/" rel="next" title="ROS学习笔记3_命名系统">
+                <i class="fa fa-chevron-left"></i> ROS学习笔记3_命名系统
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="prev" title="Linux_udev规则编写及配置">
-                Linux_udev规则编写及配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,7 +463,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-日志的生成"><span class="nav-number">1.</span> <span class="nav-text">1 日志的生成</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-日志的查看"><span class="nav-number">2.</span> <span class="nav-text">2 日志的查看</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-日志级别的调整"><span class="nav-number">3.</span> <span class="nav-text">3 日志级别的调整</span></a></li></ol></div>
             
 
           </div>
