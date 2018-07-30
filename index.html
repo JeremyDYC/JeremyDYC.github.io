@@ -301,8 +301,7 @@
         
           
             <p>参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。</p>
-<p>##通过命令行访问参数</p>
-<ol>
+<h2 id="1-通过命令行访问参数"><a href="#1-通过命令行访问参数" class="headerlink" title="1 通过命令行访问参数"></a>1 通过命令行访问参数</h2><ol>
 <li><p>查看参数列表：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam list</span><br></pre></td></tr></table></figure>
 </li>
@@ -317,8 +316,7 @@
 </li>
 </ol>
 <p>需要注意的是，更新的参数值不会自动“推送”到节点，恰恰相反，如果节点关心某些参数是否改变，必须明确向参数服务器请求这些参数的值，节点必须自行负责检查参数值的改变。</p>
-<p>##使用C++访问参数</p>
-<ol>
+<h2 id="2-使用C-访问参数"><a href="#2-使用C-访问参数" class="headerlink" title="2 使用C++访问参数"></a>2 使用C++访问参数</h2><ol>
 <li><p>查询参数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool ros::param::get(parameter_name, output_value)</span><br></pre></td></tr></table></figure>
 </li>
@@ -330,8 +328,7 @@
 <p>这种命令行参数将被转换为ros::param::set的调用，通过ros::init将”_”替换为”~”构成私有参数的形式。</p>
 <p>例如，存在节点publish_velocity，节点运行需要参数max_vel，通过以下指令可将该参数设置为节点的私有参数（在参数名前添加节点名）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam set /publish_velocity/max_vel 0.1</span><br></pre></td></tr></table></figure></p>
 <p>在节点内部如果要访问该参数，那么使用”~max_vel”的形式，通过命令行启动节点并加载参数值使用以下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name publish_velocity _max_vel:=1</span><br></pre></td></tr></table></figure></p>
-<p>##在launch文件中访问参数</p>
-<ol>
+<h2 id="3-在launch文件中访问参数"><a href="#3-在launch文件中访问参数" class="headerlink" title="3 在launch文件中访问参数"></a>3 在launch文件中访问参数</h2><ol>
 <li><p>设置参数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;param name=”param-name” value=”param-value” /&gt;</span><br></pre></td></tr></table></figure>
 </li>
