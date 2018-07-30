@@ -306,7 +306,7 @@
 <p>另外还有一些有用的选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –a 记录当前发布的所有话题的消息</span><br><span class="line"></span><br><span class="line">rosbag record –j 启用包文件的压缩</span><br></pre></td></tr></table></figure></p>
 <h2 id="2-回放包文件"><a href="#2-回放包文件" class="headerlink" title="2 回放包文件"></a>2 回放包文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play filename.bag</span><br></pre></td></tr></table></figure>
 <p>存储在包文件中个的消息将被回放，而且回放时会保持与其原始发布时同样的顺序和时间间隔。</p>
-<p>录制与回放注意事项:</p>
+<p><strong>录制与回放注意事项:</strong></p>
 <ol>
 <li><p>rosbag会创建新的节点，该节点订阅指定的话题来记录消息，并且使用匿名机制，因此我们可以同时运行多个rosbag创建的节点实例。</p>
 </li>
