@@ -229,7 +229,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记5_launch文件/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/30/ROS学习笔记6-参数服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -248,7 +248,167 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/29/ROS学习笔记5_launch文件/" itemprop="url">ROS学习笔记5_launch文件</a></h1>
+                <a class="post-title-link" href="/2018/07/30/ROS学习笔记6-参数服务/" itemprop="url">ROS学习笔记6_参数服务</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T11:21:20+08:00">
+                2018-07-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。</p>
+<p>##通过命令行访问参数</p>
+<ol>
+<li><p>查看参数列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam get parameter_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam set parameter_name parameter_value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储和加载参数文件（namespace默认为全局命名空间”/”）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosparam dump filename namespace</span><br><span class="line"></span><br><span class="line">rosparam load filename namespace</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注意的是，更新的参数值不会自动“推送”到节点，恰恰相反，如果节点关心某些参数是否改变，必须明确向参数服务器请求这些参数的值，节点必须自行负责检查参数值的改变。</p>
+<p>##使用C++访问参数</p>
+<ol>
+<li><p>查询参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool ros::param::get(parameter_name, output_value)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void ros::param::set(parameter_name, input_value)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过在命令行中使用类似重映射的语法为节点的私有参数赋值可通过给参数名添加下划线前缀实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_param-name:=param-value</span><br></pre></td></tr></table></figure></p>
+<p>这种命令行参数将被转换为ros::param::set的调用，通过ros::init将”_”替换为”~”构成私有参数的形式。</p>
+<p>例如，存在节点publish_velocity，节点运行需要参数max_vel，通过以下指令可将该参数设置为节点的私有参数（在参数名前添加节点名）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam set /publish_velocity/max_vel 0.1</span><br></pre></td></tr></table></figure></p>
+<p>在节点内部如果要访问该参数，那么使用”~max_vel”的形式，通过命令行启动节点并加载参数值使用以下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name publish_velocity _max_vel:=1</span><br></pre></td></tr></table></figure></p>
+<p>##在launch文件中访问参数</p>
+<ol>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;param name=”param-name” value=”param-value” /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置私有参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;node …&gt;</span><br><span class="line">	&lt;param name=”param-name” value=”param-value” /&gt;</span><br><span class="line">&lt;/node&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在文件中读取参数（与rosparam load等价，一次性从文件中加载多个参数）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;rosparam command=”load” file=”path-to-param-file” /&gt;</span><br><span class="line"></span><br><span class="line">&lt;rosparam command=”load” file=”$(find package-name)/param-file” /&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记5_启动文件/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/29/ROS学习笔记5_启动文件/" itemprop="url">ROS学习笔记5_启动文件</a></h1>
         
 
         <div class="post-meta">
@@ -1039,7 +1199,7 @@ and the attributes from one single parent device.
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
