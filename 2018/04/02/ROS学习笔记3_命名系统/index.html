@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
+<meta name="description" content="1 全局名称  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。 全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。 2 相对名称相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。 默认命名空间是单独地为每个节点设">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROS学习笔记7_消息录制回放">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/07/30/ROS学习笔记7-消息录制回放/index.html">
+<meta property="og:title" content="ROS学习笔记3_命名系统">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记3_命名系统/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
+<meta property="og:description" content="1 全局名称  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。 全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。 2 相对名称相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。 默认命名空间是单独地为每个节点设">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T06:23:56.811Z">
+<meta property="og:updated_time" content="2018-07-30T08:44:46.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROS学习笔记7_消息录制回放">
-<meta name="twitter:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
+<meta name="twitter:title" content="ROS学习笔记3_命名系统">
+<meta name="twitter:description" content="1 全局名称  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。 全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。 2 相对名称相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。 默认命名空间是单独地为每个节点设">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/07/30/ROS学习笔记7-消息录制回放/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记3_命名系统/"/>
 
 
 
 
 
-  <title>ROS学习笔记7_消息录制回放 | 仰望星空</title>
+  <title>ROS学习笔记3_命名系统 | 仰望星空</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/30/ROS学习笔记7-消息录制回放/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记3_命名系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ROS学习笔记7_消息录制回放</h1>
+          <h1 class="post-title" itemprop="name headline">ROS学习笔记3_命名系统</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-30T14:11:32+08:00">
-                2018-07-30
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T13:08:32+08:00">
+                2018-04-02
               </time>
             
 
@@ -299,29 +299,15 @@
       
 
       
-        <p>通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。</p>
-<p>包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。</p>
-<h2 id="1-录制包文件"><a href="#1-录制包文件" class="headerlink" title="1 录制包文件"></a>1 录制包文件</h2><p>录制发布到指定的话题上的消息到指定的bag文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –O filename.bag topic-names</span><br></pre></td></tr></table></figure></p>
-<p>另外还有一些有用的选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –a 记录当前发布的所有话题的消息</span><br><span class="line"></span><br><span class="line">rosbag record –j 启用包文件的压缩</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-回放包文件"><a href="#2-回放包文件" class="headerlink" title="2 回放包文件"></a>2 回放包文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play filename.bag</span><br></pre></td></tr></table></figure>
-<p>存储在包文件中个的消息将被回放，而且回放时会保持与其原始发布时同样的顺序和时间间隔。</p>
-<p><strong>录制与回放注意事项:</strong></p>
-<ol>
-<li><p>rosbag会创建新的节点，该节点订阅指定的话题来记录消息，并且使用匿名机制，因此我们可以同时运行多个rosbag创建的节点实例。</p>
-</li>
-<li><p>同样的，在回放bag文件时，rosbag同样会创建新的节点发布bag文件中存储的消息。</p>
-</li>
-<li><p>rosbag不会记录服务调用内容，只记录发布到话题的消息。</p>
-</li>
-</ol>
-<h2 id="3-launch文件中使用rosbag"><a href="#3-launch文件中使用rosbag" class="headerlink" title="3  launch文件中使用rosbag"></a>3  launch文件中使用rosbag</h2><p>rosbag package里也提供了名为record和play的可执行文件，因此可以在launch文件中使用rosbag的功能：</p>
-<ol>
-<li><p>录制包文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”record” type=”record” args=”-O filename.bag topic-names” /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>回放包文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”play” type=”play” args=”filename.bag” /&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
+        <h2 id="1-全局名称"><a href="#1-全局名称" class="headerlink" title="1 全局名称"></a>1 全局名称</h2><p>  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。</p>
+<p>全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。</p>
+<h2 id="2-相对名称"><a href="#2-相对名称" class="headerlink" title="2 相对名称"></a>2 相对名称</h2><p>相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。</p>
+<p>默认命名空间是单独地为每个节点设置的，而不是在系统范围进行。ROS默认会将全局命名空间（/）作为一个节点的默认命名空间，改变默认命名空间的最好和最常用的方法是在launch文件中使用命名空间（ns）属性：</p>
+<pre><code>ns=”default-namespace”
+</code></pre><p>或是使用命令行工具启动节点时添加：</p>
+<pre><code>__ns:=default-namespace
+</code></pre><h2 id="3-私有名称"><a href="#3-私有名称" class="headerlink" title="3 私有名称"></a>3 私有名称</h2><p>私有名称使用它们的节点名称作为命名空间而不是当前默认命名空间，这是它与相对名称的区别。使用这种名称的主要目的是，有一些节点内部的资源只与本节点相关，不会与其他节点打交道，用私有名称为这些节点命名，通常是节点使用的参数，话题（Topic）通常不能以私有名称命名。</p>
+<h2 id="4-节点匿名机制"><a href="#4-节点匿名机制" class="headerlink" title="4 节点匿名机制"></a>4 节点匿名机制</h2><p>将ros::init_options::Anonymous-Name作为第四个参数传递给ros::init()，将为节点设置匿名名称，匿名不意味着节点没有名字，而是使用处理器时间（wall clock time）在节点基本名称之后追加某个额外的文本，以确保节点的名字是唯一的。因此，我们可以启动同一节点的大量副本，而不导致命名冲突。</p>
 
       
     </div>
@@ -346,8 +332,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/30/ROS学习笔记6-参数服务/" rel="next" title="ROS学习笔记6_参数服务">
-                <i class="fa fa-chevron-left"></i> ROS学习笔记6_参数服务
+              <a href="/2018/04/02/ROS学习笔记1-基础概念/" rel="next" title="ROS学习笔记1-基础概念">
+                <i class="fa fa-chevron-left"></i> ROS学习笔记1-基础概念
               </a>
             
           </div>
@@ -355,6 +341,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/02/ROS学习笔记4_日志系统/" rel="prev" title="ROS学习笔记4_日志系统">
+                ROS学习笔记4_日志系统 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -468,7 +458,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-录制包文件"><span class="nav-number">1.</span> <span class="nav-text">1 录制包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-回放包文件"><span class="nav-number">2.</span> <span class="nav-text">2 回放包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-launch文件中使用rosbag"><span class="nav-number">3.</span> <span class="nav-text">3  launch文件中使用rosbag</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-全局名称"><span class="nav-number">1.</span> <span class="nav-text">1 全局名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-相对名称"><span class="nav-number">2.</span> <span class="nav-text">2 相对名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-私有名称"><span class="nav-number">3.</span> <span class="nav-text">3 私有名称</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-节点匿名机制"><span class="nav-number">4.</span> <span class="nav-text">4 节点匿名机制</span></a></li></ol></div>
             
 
           </div>

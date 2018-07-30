@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1 ROS是什么？ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。 我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS">
+<meta name="description" content="参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。 1 通过命令行访问参数 查看参数列表： 1rosparam list  查询参数： 1rosparam get parameter_name  设置参数： 1rosparam set parameter_name parameter_value  存储和加载参数文件（namespace默认为全">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROS学习笔记1-基础概念">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/01/ROS学习笔记1-基础概念/index.html">
+<meta property="og:title" content="ROS学习笔记6_参数服务">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记6-参数服务/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="1 ROS是什么？ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。 我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS">
+<meta property="og:description" content="参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。 1 通过命令行访问参数 查看参数列表： 1rosparam list  查询参数： 1rosparam get parameter_name  设置参数： 1rosparam set parameter_name parameter_value  存储和加载参数文件（namespace默认为全">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T08:16:42.306Z">
+<meta property="og:updated_time" content="2018-07-30T08:46:27.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROS学习笔记1-基础概念">
-<meta name="twitter:description" content="1 ROS是什么？ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。 我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS">
+<meta name="twitter:title" content="ROS学习笔记6_参数服务">
+<meta name="twitter:description" content="参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。 1 通过命令行访问参数 查看参数列表： 1rosparam list  查询参数： 1rosparam get parameter_name  设置参数： 1rosparam set parameter_name parameter_value  存储和加载参数文件（namespace默认为全">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/01/ROS学习笔记1-基础概念/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记6-参数服务/"/>
 
 
 
 
 
-  <title>ROS学习笔记1-基础概念 | 仰望星空</title>
+  <title>ROS学习笔记6_参数服务 | 仰望星空</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/ROS学习笔记1-基础概念/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记6-参数服务/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ROS学习笔记1-基础概念</h1>
+          <h1 class="post-title" itemprop="name headline">ROS学习笔记6_参数服务</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:53:09+08:00">
-                2018-04-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T15:21:20+08:00">
+                2018-04-02
               </time>
             
 
@@ -299,29 +299,44 @@
       
 
       
-        <h2 id="1-ROS是什么？"><a href="#1-ROS是什么？" class="headerlink" title="1 ROS是什么？"></a>1 ROS是什么？</h2><p>ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。</p>
-<p>我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS是管理和控制机器人硬件与软件资源的系统。</p>
-<p>ROS为我们提供了一个分布式计算的框架，丰富的功能库可以帮助我们实现机器人算法及通信接口的软件复用，其工具集也可以帮助我们快速实现功能测试，另外ROS还有拥有庞大的社区，这些都可以帮助开发者快速构建机器人应用。</p>
-<p>具体来说，ROS提供的服务包含：硬件抽象（hardware abstraction），底层设备控制（low-level device control），通用功能（commonly-used functionality），进程间消息传递（message-passing between processes）和包管理（package management）等。</p>
-<h2 id="2-文件层级概念"><a href="#2-文件层级概念" class="headerlink" title="2 文件层级概念"></a>2 文件层级概念</h2><h2 id="3-运算图级概念"><a href="#3-运算图级概念" class="headerlink" title="3 运算图级概念"></a>3 运算图级概念</h2><p>ROS为我们提供了一个分布式运算的架构。</p>
-<h3 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h3><p>在ROS的分布式运算架构中，拥有很多从功能上来说相对独立的节点，这些节点必须能够相互通信，节点管理器ROS Master是实现节点间通信的关键部分。</p>
-<p>命令行中通过以下指令启动ROS Master：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></p>
-<p>运行该指令，除了启动master，还会启动parameter server及日志管理节点rosout。</p>
-<p>节点启动之后会到Master中注册信息，由Master引导各个相关节点建立直接的连接（数据的传输不经过Master），实现分布式计算节点间的通信。</p>
-<p>如果Master在ROS工程启动之后停止或重启，之前启动的节点仍然能正常进行通信。但这些节点将在不会试图与重启之后Master重连，Master不会有之前已经启动的节点的信息，所以不能帮助后续启动的节点与之前启动的节点建立通信连接。</p>
-<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>节点在文件层级就是可执行文件，运行之后就成了一个进程，这个进程就是ROS分布式计算的节点，从功能上来说，通常每个节点负责一种功能的实现。</p>
-<p>节点的启动方式通常为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name</span><br></pre></td></tr></table></figure></p>
-<p>启动节点时，通过“__name”参数可以指定名字覆盖掉要启动的节点原来的名字，这样可以启动同一节点的多个副本，使用格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name __name:=node_name</span><br></pre></td></tr></table></figure></p>
-<p>否则，如果试图启动跟已启动的节点具有相同名字的新节点，会将原有的节点关闭。</p>
-<p>如果使用Ctrl-C命令终止节点，通常不会在Master中注销该节点，这样已终止的节点信息依然可以通过rosnode命令查看，可以使用rosnode cleanup命令清除注销节点的残留信息；另外如果使用rosnode kill指令关闭节点，通常不会发生上述现象。</p>
-<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p><strong>1 Topic</strong><br>ROS节点之间进行通信所利用的最重要的机制就是消息传递，在ROS中，消息有组织的放到Topic里进行传递。</p>
-<p>Topic通信是多对多的异步通信方式，Topic Publisher发布消息后不必等待响应，对于同一Topic，系统中可以同时存在多个Publisher和多个Subscriber；另外，Publisher并不知道哪个节点会接收消息，而Subscriber也并不知道接收的消息来自哪个节点，节点之间是松耦合的，这也是ROS最关键的设计特性之一。</p>
-<p>当一个节点想要分享信息时，会发布消息到对应的一个或多个话题；当一个节点想要接收消息时，会订阅所需要的一个或多个话题。ROS Master负责确保发布节点和订阅节点能找到对方；而且消息是直接从发布节点传递到订阅节点，并不经过Master。</p>
-<p>ROS提供rostopic与rosmsg两个命令行工具帮助我们查看Topic和Message的详细信息。</p>
-<p><strong>2 Service</strong><br>服务调用（service calls）是ROS中另一种通信方法。</p>
-<p>服务调用是同步通信方式，一个节点给另一个节点发送信息并等待响应，因此信息流是双向的；另外，服务调用实现的是一对一通信，每一个服务由一个节点发起，对这个服务的响应返回同一个节点。</p>
-<p>ROS提供rosservice和rossrv命令行工具帮助我们查看Service和服务类型的详细消息。</p>
-<p><strong>3 Action</strong></p>
+        <p>参数服务器存储的参数属于参数服务器而不是任何特定的节点，这意味着由节点创建参数在节点终止时扔将继续存在。</p>
+<h2 id="1-通过命令行访问参数"><a href="#1-通过命令行访问参数" class="headerlink" title="1 通过命令行访问参数"></a>1 通过命令行访问参数</h2><ol>
+<li><p>查看参数列表：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam list</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查询参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam get parameter_name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam set parameter_name parameter_value</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>存储和加载参数文件（namespace默认为全局命名空间”/”）:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosparam dump filename namespace</span><br><span class="line"></span><br><span class="line">rosparam load filename namespace</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>需要注意的是，更新的参数值不会自动“推送”到节点，恰恰相反，如果节点关心某些参数是否改变，必须明确向参数服务器请求这些参数的值，节点必须自行负责检查参数值的改变。</p>
+<h2 id="2-使用C-访问参数"><a href="#2-使用C-访问参数" class="headerlink" title="2 使用C++访问参数"></a>2 使用C++访问参数</h2><ol>
+<li><p>查询参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool ros::param::get(parameter_name, output_value)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void ros::param::set(parameter_name, input_value)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>通过在命令行中使用类似重映射的语法为节点的私有参数赋值可通过给参数名添加下划线前缀实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">_param-name:=param-value</span><br></pre></td></tr></table></figure></p>
+<p>这种命令行参数将被转换为ros::param::set的调用，通过ros::init将”_”替换为”~”构成私有参数的形式。</p>
+<p>例如，存在节点publish_velocity，节点运行需要参数max_vel，通过以下指令可将该参数设置为节点的私有参数（在参数名前添加节点名）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosparam set /publish_velocity/max_vel 0.1</span><br></pre></td></tr></table></figure></p>
+<p>在节点内部如果要访问该参数，那么使用”~max_vel”的形式，通过命令行启动节点并加载参数值使用以下形式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name publish_velocity _max_vel:=1</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-在launch文件中访问参数"><a href="#3-在launch文件中访问参数" class="headerlink" title="3 在launch文件中访问参数"></a>3 在launch文件中访问参数</h2><ol>
+<li><p>设置参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;param name=”param-name” value=”param-value” /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置私有参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;node …&gt;</span><br><span class="line">	&lt;param name=”param-name” value=”param-value” /&gt;</span><br><span class="line">&lt;/node&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在文件中读取参数（与rosparam load等价，一次性从文件中加载多个参数）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;rosparam command=”load” file=”path-to-param-file” /&gt;</span><br><span class="line"></span><br><span class="line">&lt;rosparam command=”load” file=”$(find package-name)/param-file” /&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -346,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/01/HelloWorld/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/04/02/ROS学习笔记5_启动文件/" rel="next" title="ROS学习笔记5_启动文件">
+                <i class="fa fa-chevron-left"></i> ROS学习笔记5_启动文件
               </a>
             
           </div>
@@ -356,8 +371,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="prev" title="Linux_udev规则编写及配置">
-                Linux_udev规则编写及配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/02/ROS学习笔记7-消息录制回放/" rel="prev" title="ROS学习笔记7_消息录制回放">
+                ROS学习笔记7_消息录制回放 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -472,7 +487,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ROS是什么？"><span class="nav-number">1.</span> <span class="nav-text">1 ROS是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-文件层级概念"><span class="nav-number">2.</span> <span class="nav-text">2 文件层级概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-运算图级概念"><span class="nav-number">3.</span> <span class="nav-text">3 运算图级概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Master"><span class="nav-number">3.1.</span> <span class="nav-text">Master</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node"><span class="nav-number">3.2.</span> <span class="nav-text">Node</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通信机制"><span class="nav-number">3.3.</span> <span class="nav-text">通信机制</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-通过命令行访问参数"><span class="nav-number">1.</span> <span class="nav-text">1 通过命令行访问参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用C-访问参数"><span class="nav-number">2.</span> <span class="nav-text">2 使用C++访问参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-在launch文件中访问参数"><span class="nav-number">3.</span> <span class="nav-text">3 在launch文件中访问参数</span></a></li></ol></div>
             
 
           </div>
