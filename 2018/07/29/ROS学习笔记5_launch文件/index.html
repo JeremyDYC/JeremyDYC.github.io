@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1 launch文件的启动:使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素：启">
+<meta name="description" content="1 launch文件的启动使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素启动文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ROS学习笔记5_launch文件">
 <meta property="og:url" content="http://JeremyDYC.github.io/2018/07/29/ROS学习笔记5_launch文件/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="1 launch文件的启动:使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素：启">
+<meta property="og:description" content="1 launch文件的启动使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素启动文">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-30T00:29:56.012Z">
+<meta property="og:updated_time" content="2018-07-30T00:56:05.306Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ROS学习笔记5_launch文件">
-<meta name="twitter:description" content="1 launch文件的启动:使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素：启">
+<meta name="twitter:description" content="1 launch文件的启动使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。 使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：1roslaunch –v package-name launch-file-name 2 根元素启动文">
 
 
 
@@ -299,10 +299,10 @@
       
 
       
-        <h2 id="1-launch文件的启动"><a href="#1-launch文件的启动" class="headerlink" title="1 launch文件的启动:"></a>1 launch文件的启动:</h2><p>使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。</p>
+        <h2 id="1-launch文件的启动"><a href="#1-launch文件的启动" class="headerlink" title="1 launch文件的启动"></a>1 launch文件的启动</h2><p>使用roslaunch启动多个节点，文件内所有的节点几乎都在同一时刻启动，因此，事实上我们无法确定各个节点的启动顺序。不过这并没有什么影响，设计良好的ROS节点是不关心各个节点的启动顺序的。</p>
 <p>使用“-v”选项可以查看roslaunch命令启动launch文件的详细信息：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roslaunch –v package-name launch-file-name</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-根元素："><a href="#2-根元素：" class="headerlink" title="2 根元素："></a>2 根元素：</h2><p>启动文件是XML文件，每个XML文件都必须要包含一个根元素。ROS launch文件的根元素为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt;</span><br><span class="line">… …</span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure></p>
-<h2 id="3-节点启动："><a href="#3-节点启动：" class="headerlink" title="3 节点启动："></a>3 节点启动：</h2><p>任何launch文件的核心都是一系列的节点元素，每个节点元素指向一个需要启动的节点，基本形式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”package-name” type=”executable-name” name=”node-name”/&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-根元素"><a href="#2-根元素" class="headerlink" title="2 根元素"></a>2 根元素</h2><p>启动文件是XML文件，每个XML文件都必须要包含一个根元素。ROS launch文件的根元素为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;launch&gt;</span><br><span class="line">… …</span><br><span class="line">&lt;/launch&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="3-节点启动"><a href="#3-节点启动" class="headerlink" title="3 节点启动"></a>3 节点启动</h2><p>任何launch文件的核心都是一系列的节点元素，每个节点元素指向一个需要启动的节点，基本形式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”package-name” type=”executable-name” name=”node-name”/&gt;</span><br></pre></td></tr></table></figure></p>
 <p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”package-name” type=”executable-name” name=”node-name”&gt;</span><br><span class="line">... ...</span><br><span class="line">&lt;/node&gt;</span><br></pre></td></tr></table></figure></p>
 <p>节点启动的<strong>output</strong>属性使节点运行日志显示到控制台：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">output=”screen”</span><br></pre></td></tr></table></figure></p>
 <p>节点启动的<strong>respawn</strong>属性会设置节点的复位功能，在启动了launch文件中所有的节点之后，roslaunch会监视每一个节点，记录哪一个节点是活跃的。如果设置respawn属性为真，当节点停止时，roslaunch会重新启动该节点:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">respawn=”true”</span><br></pre></td></tr></table></figure></p>
@@ -310,6 +310,16 @@
 <p>roslaunch允许节点使用<strong>启动前缀（launch-prefix）</strong>属性（Launch-prefix=”command-prefix”）。事实上，roslaunch在启动节点时的内部工作原理是调用相应的命令行工具，即rosrun。启动前缀的主要思想是在其命令行前面添加给出的命令行前缀。<br>如果要使某一节点在单独的终端内启动，可以使用：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">launch-prefix=”xetrm-e”</span><br></pre></td></tr></table></figure></p>
 <p>其中，xetrm命令打开一个简单终端窗口，参数-e告诉xterm在新打开的终端中执行该命令行的剩余部分。</p>
 <p>节点启动的<strong>ns</strong>属性可以为节点设置默认命名空间：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ns=”namespace”</span><br></pre></td></tr></table></figure></p>
+<h2 id="4-名称重映射"><a href="#4-名称重映射" class="headerlink" title="4 名称重映射"></a>4 名称重映射</h2><p>remap属性实现名称重映射，重映射基于替换的思想，每个重映射包含一个原始名称和一个新名称，每当节点使用重映射中的原始名称时，ROS会将其替换为对应的新名称。启动节点时，有两种方法来创建重映射：</p>
+<ol>
+<li><p>当用命令行启动时，添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">original-name:=new-name</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>当使用launch文件启动时，使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;remap from=”original-name” to=“new-name”/&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>注意，如果该属性是launch元素的子元素，重映射会应用到所有的后续节点；如果是一个节点元素的子元素，那么该重映射只应用于其所在的节点。</p>
 
       
     </div>
@@ -456,7 +466,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-launch文件的启动"><span class="nav-number">1.</span> <span class="nav-text">1 launch文件的启动:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-根元素："><span class="nav-number">2.</span> <span class="nav-text">2 根元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-节点启动："><span class="nav-number">3.</span> <span class="nav-text">3 节点启动：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-launch文件的启动"><span class="nav-number">1.</span> <span class="nav-text">1 launch文件的启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-根元素"><span class="nav-number">2.</span> <span class="nav-text">2 根元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-节点启动"><span class="nav-number">3.</span> <span class="nav-text">3 节点启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-名称重映射"><span class="nav-number">4.</span> <span class="nav-text">4 名称重映射</span></a></li></ol></div>
             
 
           </div>
