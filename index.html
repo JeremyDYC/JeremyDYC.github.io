@@ -475,6 +475,650 @@ and the attributes from one single parent device.
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记4-Kinematics and Collision Checking/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/03/MoveIt!学习笔记4-Kinematics and Collision Checking/" itemprop="url">MoveIt!学习笔记4-Kinematics and Collision Checking</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T22:30:06+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MoveIt-学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">MoveIt!学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Kinematics"><a href="#Kinematics" class="headerlink" title="Kinematics"></a>Kinematics</h2><p>MoveIt!使用插件基础设施，允许用户写自己的运动学算法。</p>
+<p>Forward kinematics及jacobians已经集成到RobotState类中了。</p>
+<p>默认的Inverse kinematics插件使用KDL numerical jacobian-based solver，这个插件通过MoveIt! Setup Assistant自动配置。</p>
+<p>通常，用户可以选择实现自己的运动学解析器。一种常用的方法是用IKFast package生成机器人运行所需的C++代码。</p>
+<h2 id="Collision-Checking"><a href="#Collision-Checking" class="headerlink" title="Collision Checking"></a>Collision Checking</h2><p>MoveIt!的碰撞检测用CollisionWorld对象配置在Planning Scene中，执行碰撞检测的库主要是FCL package。</p>
+<p>MoveIt!支持不同类型对象的碰撞检测，包含：</p>
+<ol>
+<li><p>Meshes</p>
+</li>
+<li><p>Primitive Shapes：例如boxes，cylinders，cones，spheres，planes</p>
+</li>
+<li><p>Octomap：Octomap对象可以直接用于碰撞检测</p>
+</li>
+</ol>
+<h2 id="Allowed-Collision-Matrix（ACM）"><a href="#Allowed-Collision-Matrix（ACM）" class="headerlink" title="Allowed Collision Matrix（ACM）"></a>Allowed Collision Matrix（ACM）</h2><p>碰撞检测是一项非常昂贵的操作，通常会花费运动规划过程接近90%的算力。ACM编码二进制值，指示机器人本体中某两部分是否需要进行碰撞检测。如果某两部分在ACM中对应的值为1，说明这两部分不需要进行碰撞检测。例如，机器人本体中两部分可能相距特别远，不可能发生碰撞。</p>
+<h2 id="Time-Parameterization"><a href="#Time-Parameterization" class="headerlink" title="Time Parameterization"></a>Time Parameterization</h2><p>Motion Planner通常只会生成路径，并不会包含时间信息。MoveIt!包含一个trajectory processing routine，可以处理这些路径以生成服从关节最大速度与加速度约束，并进行time-parameterized的轨迹，其中速度与加速度限制从机器人的joint_limits.yaml文件中读取。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记3-Planning Scene/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/03/MoveIt!学习笔记3-Planning Scene/" itemprop="url">MoveIt!学习笔记3-Planning Scene</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T22:27:50+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MoveIt-学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">MoveIt!学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Planning-Scene-Monitor"><a href="#Planning-Scene-Monitor" class="headerlink" title="Planning Scene Monitor"></a>Planning Scene Monitor</h2><p>Planning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。</p>
+<p>Planning scene monitor接收以下信息：</p>
+<p>State Information：通过joint_states话题</p>
+<p>Sensor Information：使用World Geometry Monitor</p>
+<p>World geometry information：通过用户输入的planning_scene话题</p>
+<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg" alt="" title="planning scene monitor"></p>
+<h2 id="World-Geometry-Monitor"><a href="#World-Geometry-Monitor" class="headerlink" title="World Geometry Monitor"></a>World Geometry Monitor</h2><p>World Geometry Monitor使用机器人传感器信息及用户输入构建world geometry。具体来说，World Geometry Monitor使用Occupancy Map Monitor对机器人周围环境进行3D呈现，并且通过planning_scene话题的信息来向场景中增加物体信息。</p>
+<h2 id="Occupancy-Map-Monitor（3D-Perception）"><a href="#Occupancy-Map-Monitor（3D-Perception）" class="headerlink" title="Occupancy Map Monitor（3D Perception）"></a>Occupancy Map Monitor（3D Perception）</h2><p>MoveIt!通过Occupancy Map Monitor进行3D感知，Occupancy Map Monitor使用插件结构操控不同种类的传感器，MoveIt!内置支持两种类型的输入：</p>
+<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.004.jpg" alt="" title="World Geometry Monitor"></p>
+<ol>
+<li><p><em>Point clouds：</em>由point cloud occupancy map updater插件处理</p>
+</li>
+<li><p><em>Depth images：</em>由depth image occupancy map updater插件处理</p>
+</li>
+</ol>
+<p>除此之外，我们可以以插件的形式增加自己的updater类型到Occupancy Map Monitor中。</p>
+<p>Occupancy Map Monitor使用Octomap维护环境的occupancy map。Octomap可以对独立的单元编写概率信息，但MoveIt!当前没有使用这些信息。另外，Octomap可以直接传输到MoveIt!使用的碰撞探测库FCL。</p>
+<p>Depth image occupancy map updater包含自己的self-filter，它会从深度图像中移走机器人的可视化部分，主要通过机器人当前状态信息执行该操作。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记2-Motion Planning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/03/MoveIt!学习笔记2-Motion Planning/" itemprop="url">MoveIt!学习笔记2-Motion Planning</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T22:24:12+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MoveIt-学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">MoveIt!学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="The-Motion-Planning-Plugin"><a href="#The-Motion-Planning-Plugin" class="headerlink" title="The Motion Planning Plugin"></a>The Motion Planning Plugin</h2><p>MoveIt!通过plugin接口使用不同的motion planners，这使得MoveIt!可以使用来自不同的库的motion planners。</p>
+<p>MoveIt!到motion planners的接口通过MoveGroup节点提供的ROS Action和service实现。MoveGroup中默认的运动规划器使用OMPL进行配置，MoveIt!通过MoveIt!设置助手与OMPL进行交互。</p>
+<h2 id="The-Motion-Plan-Request"><a href="#The-Motion-Plan-Request" class="headerlink" title="The Motion Plan Request"></a>The Motion Plan Request</h2><p>Motion plan request清晰的指定我们希望motion planner做的事情。</p>
+<p>通常，我们会请求motion planner将arm移动到不同的位置（在关节空间中）或将end-effector移动到新的pose。</p>
+<p>碰撞探测（包含自碰撞探测self-collisions）默认执行。</p>
+<p>我们可以将物体附着到末端执行器或机器人其它部位。例如，当机械臂抓取物体之后，我们可以将该物体附着到末端执行器，这使motion planner规划路径的时候考虑被抓取的物体的运动。</p>
+<p>我们也可以指定希望motion planner进行检查的约束，MoveIt!提供的内置约束是kinematic约束：</p>
+<ol>
+<li><p>Position constraints - 限制某一link的位置在某一空间区域内</p>
+</li>
+<li><p>Orientation constraints - 限制某一link的方向在指定的rpy角度范围内</p>
+</li>
+<li><p>Visibility constraints - 限制某一link上的某一点在指定传感器的可见范围内</p>
+</li>
+<li><p>Joint constraints - 限制关节角度位于指定的值之间</p>
+</li>
+<li><p>User-specified constraints - 使用用户定义callback指定自己设定的约束</p>
+</li>
+</ol>
+<h2 id="The-Motion-Plan-Result"><a href="#The-Motion-Plan-Result" class="headerlink" title="The Motion Plan Result"></a>The Motion Plan Result</h2><p>MoveGroup节点会生成要求的轨迹以响应motion plan request，轨迹会将arm移动到要求的位姿。</p>
+<p>MoveGroup生成的是轨迹（Trajectory）而不仅仅是路径（Path），MoveGroup会使用要求的最大速度和加速度生成轨迹，轨迹在关节级别会服从速度与加速度约束。</p>
+<h2 id="The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters"><a href="#The-Motion-Planning-Pipeline-Motion-planners-and-Plan-Request-Adapters" class="headerlink" title="The Motion Planning Pipeline:Motion planners and Plan Request Adapters"></a>The Motion Planning Pipeline:Motion planners and Plan Request Adapters</h2><p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.002.jpg" alt="" title="Motion Planning Pipeline"></p>
+<p>完整的motion planning pipeline chains将motion planner与planning request adapters组合到一起。Planning request adapters可以分别预处理motion plan requests及后置处理motion plan responses。</p>
+<p>预处理在一些情形下比较有用，例如，机器人的起始状态稍微超出机器人指定的关节限制。</p>
+<p>后置处理则在其它一些情形下比较有用，例如，将生成的路径转换为time-parameterized的轨迹。</p>
+<p>MoveIt!提供一系列默认的motion planning adapters，每一种都执行特定的功能：</p>
+<h3 id="1-FixStartStateBounds"><a href="#1-FixStartStateBounds" class="headerlink" title="1 FixStartStateBounds"></a><em>1 FixStartStateBounds</em></h3><p>当实际机器人的关节限制没有进行合适的配置的情况下，机器人最终停到某一配置时，会有一个或多个关节稍微的超出关节限制，此时，motion planner无法进行规划，因为它认为机器人的起始状态超出了关节限制，这种情况下可以使用FixStartStateBounds适配器。</p>
+<p>FixStartStateBounds适配器会移动Robot，使关节到达URDF文件指定的关节限制中。当然，这种方式不是在任何情况下都起作用的，例如，关节超出了关节限制很多的情形。适配器的参数可以指定关节超出关节限制多少的情况下是可被修复的。</p>
+<h3 id="2-FixWorkspaceBounds"><a href="#2-FixWorkspaceBounds" class="headerlink" title="2 FixWorkspaceBounds"></a><em>2 FixWorkspaceBounds</em></h3><p>FixWorkspaceBounds会指定默认的工作空间用于规划：10m<em>10m</em>10m的立方体。这个工作空间只有当motion planning request没有指定工作空间参数时才会指定。</p>
+<h3 id="3-FixStartStateCollision"><a href="#3-FixStartStateCollision" class="headerlink" title="3 FixStartStateCollision"></a><em>3 FixStartStateCollision</em></h3><p>FixStartStateCollision会通过微调关节值，在可能发生碰撞的指定的配置空间中采样获取新的无碰撞的配置。</p>
+<p>通过“jiggle_factor”参数指定关节扰动量，控制扰动成为关节总的移动范围的某一百分比。该适配器的其它参数指定适配器在放弃之前进行多少随机扰动采样。</p>
+<h3 id="4-FixStartStatePathConstraints"><a href="#4-FixStartStatePathConstraints" class="headerlink" title="4 FixStartStatePathConstraints"></a><em>4 FixStartStatePathConstraints</em></h3><p>FixStartStatePathConstraints在某一motion plan的起始状态不符合指定的路径约束时起作用。适配器会在机器人当前配置与服从路径约束的新位置之间规划一条新的路径。而新位置则作为规划的起始状态。</p>
+<h3 id="5-AddTimeParameterization"><a href="#5-AddTimeParameterization" class="headerlink" title="5 AddTimeParameterization"></a><em>5 AddTimeParameterization</em></h3><p>Motion Planner通常生成“kinematic paths”，例如，生成的路径并不服从任何的速度与加速度约束，而且并没有进行时间参数化。而AddTimeParameterization适配器则会构建服从速度与加速度约束且“time parameterize”的轨迹。</p>
+<h2 id="OMPL"><a href="#OMPL" class="headerlink" title="OMPL"></a>OMPL</h2><p>OMPL（Open Motion Planning Library）是开源的运动规划库，主要实现随机化的运动规划器。MoveIt!直接集成OMPL并使用其中的运动规划器作为默认的规划器。OMPL中的规划器是抽象的，例如，OMPL并没有机器人的概念。而MoveIt!则将OMPL作为后端运行来解决机器人相关的问题。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记1-System Architecture/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/03/MoveIt!学习笔记1-System Architecture/" itemprop="url">MoveIt!学习笔记1-System Architecture</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T22:09:32+08:00">
+                2018-04-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/MoveIt-学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">MoveIt!学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="MoveGroup"><a href="#MoveGroup" class="headerlink" title="MoveGroup"></a>MoveGroup</h2><p>MoveGroup是MoveIt!提供的主要节点，它将多个独立的组件组合到一起，提供我们常用的操作，如设置关节和位姿目标，创建运动规划路径，移动机器人，向环境增加对象，向机器人增加或移除对象等。</p>
+<h2 id="User-Interface"><a href="#User-Interface" class="headerlink" title="User Interface"></a>User Interface</h2><p>MoveGroup提供一系列ROS actions，services，topics与User Interface进行交互。用户可以通过C++实现的move_group_interface，python实现的moveit_commander及RViz的MoveIt!插件Motion Planning与MoveGroup进行交互。</p>
+<h2 id="ROS-Param-Server"><a href="#ROS-Param-Server" class="headerlink" title="ROS Param Server"></a>ROS Param Server</h2><p>ROS Param Server则向MoveGroup提供机器人的URDF，SRDF及其它配置参数。配置参数包括关节限制，运动学参数，运动规划参数，感知及其它信息等，配置文件由MoveIt! setup assistant生成并放在config文件夹中。</p>
+<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0012.jpg" alt="" title="MoveIt! System Architecture"></p>
+<h2 id="Robot-Interface"><a href="#Robot-Interface" class="headerlink" title="Robot Interface"></a>Robot Interface</h2><p>MoveGroup通过ROS topics及actions与Robot进行交互，获取机器人当前状态信息（如关节位置），点云信息及其它传感器信息，并与机器人Controller进行交互。</p>
+<h3 id="Joint-State-Information"><a href="#Joint-State-Information" class="headerlink" title="Joint State Information"></a><em>Joint State Information</em></h3><p>MoveGroup通过接收/joint_states topic确定机器人每个关节位置，MoveGroup可以同时接收多个publishers发布的/joint_states topic，即使这些publishers发布的只是局部的机器人状态信息，如两个publishers分别发布arm与移动底盘的状态信息。</p>
+<p>关节状态publisher是在Robot侧实现的，MoveGroup并不构建joint state publisher。</p>
+<h3 id="Transform-Information"><a href="#Transform-Information" class="headerlink" title="Transform Information"></a><em>Transform Information</em></h3><p>MoveGroup使用ROS TF库监测变换信息，以此来获取机器人pose的全局信息（例如，ROS navigation stack会将map frame与base frame之间的变换发布到TF）。</p>
+<p>MoveGroup只接收TF信息，因此我们需要在Robot侧构建robot_state_publisher节点发布TF信息。</p>
+<h3 id="Controller-Interface"><a href="#Controller-Interface" class="headerlink" title="Controller Interface"></a><em>Controller Interface</em></h3><p>MoveGroup使用FollowJointTrajectoryAction接口与Robot controller进行交互。Robot侧需要设置FollowJointTrajectoryAction的server，MoveGroup则会实例化client与server进行交互。</p>
+<h3 id="Planning-Scene"><a href="#Planning-Scene" class="headerlink" title="Planning Scene"></a><em>Planning Scene</em></h3><p>MoveGroup使用Planning Scene Monitor维护planning scene，planning scene是对机器人周边环境及当前机器人状态的呈现，其中机器人状态包含机器人抓取的物体。</p>
+<h3 id="Extensible-Capabilities"><a href="#Extensible-Capabilities" class="headerlink" title="Extensible Capabilities"></a><em>Extensible Capabilities</em></h3><p>MoveGroup容易进行扩展，像抓取放置功能、运动学、运动规划都通过插件的形式实现，这些插件通过ROS yaml参数进行配置，并使用了ROS pluginlib库。通常我们不需要手动对这些插件进行配置，使用MoveIt! Setup Assistant构建MoveIt! package的时候会自动配置。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记8-Catkin编译系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1313,627 +1957,13 @@ and the attributes from one single parent device.
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记3_命名系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/ROS学习笔记3_命名系统/" itemprop="url">ROS学习笔记3_命名系统</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T13:08:32+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-全局名称"><a href="#1-全局名称" class="headerlink" title="1 全局名称"></a>1 全局名称</h2><p>  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。</p>
-<p>全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。</p>
-<h2 id="2-相对名称"><a href="#2-相对名称" class="headerlink" title="2 相对名称"></a>2 相对名称</h2><p>相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。</p>
-<p>默认命名空间是单独地为每个节点设置的，而不是在系统范围进行。ROS默认会将全局命名空间（/）作为一个节点的默认命名空间，改变默认命名空间的最好和最常用的方法是在launch文件中使用命名空间（ns）属性：</p>
-<pre><code>ns=”default-namespace”
-</code></pre><p>或是使用命令行工具启动节点时添加：</p>
-<pre><code>__ns:=default-namespace
-</code></pre><h2 id="3-私有名称"><a href="#3-私有名称" class="headerlink" title="3 私有名称"></a>3 私有名称</h2><p>私有名称使用它们的节点名称作为命名空间而不是当前默认命名空间，这是它与相对名称的区别。使用这种名称的主要目的是，有一些节点内部的资源只与本节点相关，不会与其他节点打交道，用私有名称为这些节点命名，通常是节点使用的参数，话题（Topic）通常不能以私有名称命名。</p>
-<h2 id="4-节点匿名机制"><a href="#4-节点匿名机制" class="headerlink" title="4 节点匿名机制"></a>4 节点匿名机制</h2><p>将ros::init_options::Anonymous-Name作为第四个参数传递给ros::init()，将为节点设置匿名名称，匿名不意味着节点没有名字，而是使用处理器时间（wall clock time）在节点基本名称之后追加某个额外的文本，以确保节点的名字是唯一的。因此，我们可以启动同一节点的大量副本，而不导致命名冲突。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记2-基础编程/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/ROS学习笔记2-基础编程/" itemprop="url">ROS学习笔记2_基础编程</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:21:47+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-Topic通信-Publisher"><a href="#1-Topic通信-Publisher" class="headerlink" title="1 Topic通信-Publisher"></a>1 Topic通信-Publisher</h2><p><strong>1.1 创建Publisher对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Publisher pub = node_handle.advertise&lt;message_type&gt;(topic_name, queue_size);</span><br></pre></td></tr></table></figure></p>
-<p>Publisher对象的创建是一个很耗时的操作，所以不应该在想发消息的时候临时创建Publisher对象，而是应该为每个要发布的Topic创建一个Publisher，在程序执行过程中一直使用这个Publisher。</p>
-<p>在节点间通信的过程相比于创建消息所需的时间是耗时的。在ROS中，当有新消息产生时，publish方法只负责在“发件箱”（可以认为是消息缓存区）中存储这条消息，后台有一个单独的线程负责实际发送消息。参数queue_size指定“发件箱”存储的消息的数目。</p>
-<p>如果发布者与订阅者节点是相同进程的一部分，消息会直接传送给订阅者，而不会使用任何网络传输，这一特点对于创建nodelets尤其重要，可将多个节点动态载入到相同的进程。</p>
-<h2 id="2-Topic通信-Subscriber"><a href="#2-Topic通信-Subscriber" class="headerlink" title="2 Topic通信-Subscriber"></a>2 Topic通信-Subscriber</h2><p><strong>2.1  编写回调函数：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">void function_name(const package_name::type_name &amp;msg)&#123;</span><br><span class="line">… …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>回调函数的返回值类型为void，这样设置是因为调用回调函数是ROS的工作，返回值也要交给ROS，我们的程序无法获得返回值，这样非void的返回值类型就没有意义了。</p>
-<p><strong>2.2 创建Subscriber对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Subscriber sub = node_handle.subscribe(topic_name, queue_size, pointer_to_callback_function);</span><br></pre></td></tr></table></figure></p>
-<p>Subscriber同样具有queue_size参数，当新的消息到达时，会被保存在一个队列中，类似于“收件箱”，ROS执行相应的回调函数的时候从这个队列中获取消息。如果新消息到达时，队列已满，最早到达的还未被处理的消息将会被丢弃以腾出空间。</p>
-<p>ROS清空Publisher发布序列的速率取决于给订阅者传输消息所占用的时间，而这个时间在很大程度上是不受控制的。而ROS清空Subscriber订阅序列的速率取决于相应的回调函数有多快，可以通过减少每个回调函数的计算时间减少订阅队列溢出的可能性。</p>
-<h2 id="3-Service通信-client"><a href="#3-Service通信-client" class="headerlink" title="3 Service通信-client"></a>3 Service通信-client</h2><p><strong>3.1 创建客户端对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::ServiceClient client = node_handle.serviceClient&lt;service_type&gt;(service_name);</span><br></pre></td></tr></table></figure></p>
-<p>注意，与创建Publisher相比，创建ServiceClient对象不需要队列大小，因为服务调用直到响应抵达后才会返回，而客户端要等待服务调用完成，因此没有必要维持一个发送服务调用的队列。<br><strong>3.2 创建请求和响应对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">package_name::service_type::Request</span><br><span class="line"></span><br><span class="line">package_name::service_type::Response</span><br></pre></td></tr></table></figure></p>
-<p><strong>3.3 调用服务：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bool success = service_client.call(request, response);</span><br></pre></td></tr></table></figure></p>
-<p>这个方法实际上完成了定位服务器节点传输请求数据、等待响应和存储响应数据等一系列工作。</p>
-<p>在默认情况下，查找和连接服务器节点的过程是在调用方法内部发生的。这个连接仅在此次服务调用期间有效，在调用返回后将被关闭。ROS也支持“持续服务客户端的概念”，ros::ServiceClient构造函数建立誉服务器节点的连接，然后可以被这个客户端对象的所有后续调用重用。通过传递true值给构造函数的第二个参数，可以创建一个持续服务客户端：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::ServiceClient client = node_handle.serviceClient&lt;service_type&gt;(service_name, true);</span><br></pre></td></tr></table></figure></p>
-<p>但这样做并不能显著提升系统性能。</p>
-<h2 id="4-Service通信-server"><a href="#4-Service通信-server" class="headerlink" title="4 Service通信-server"></a>4 Service通信-server</h2><p><strong>4.1 编写服务的回调函数：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bool function_name(package_name::service_type::Request &amp;req, package_name::service_type::Response &amp;resp)&#123;</span><br><span class="line">… …</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>4.2 创建服务器对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::ServiceServer server = node_handle.advertiseService(service_name, pointer_to_callback_function);</span><br></pre></td></tr></table></figure></p>
-<p>通ros::Subscriber对象一样，很少需要调用ros::ServiceServer对象的任意函数，我们要小心的跟踪这个对象的生命期，因为只有ros::ServiceServer被销毁前，其他节点才能使用服务。</p>
-<p>注意，由于在私有名称的解析上存在一些理解上的歧义，ros::NodeHandle::advertiseService拒绝接受私有名称（即那些以~开始的名称）。因为，我们可以利用节点自身的缺省命名空间创建ros::NodeHandle对象：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::NodeHandle nhPrivate(“~”);</span><br></pre></td></tr></table></figure></p>
-<p>这种情况下，发送给节点句柄的任意局部名称的缺省命名空间同节点名称一致。如果我们用这个句柄和相对名称来发布一个服务，效果将与使用私有名称相同。例如，在一个名为/foo/bar的节点，广播一个名为/foo/bar/baz的服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::ServiceServer server = nhPrivate.advertiseService(“bar”, CallBack);</span><br></pre></td></tr></table></figure></p>
-<p>如果句柄愿意接受私有名称的话，这段代码的效果与使用普遍的NodeHandle广播名为“~baz”的服务效果相同。</p>
-<p><strong>一个需要注意的重要问题：</strong><br>假如我们构造一个节点，该节点接收服务调用，在回调函数中发布小乌龟运动的速度指令。</p>
-<p>如果在程序中使用ros::Rate对象的sleep方法使系统以相对较低的频率（2Hz）循环，这时程序的大部分时间是用于休眠的。服务调用在sleep执行时到达，然后开始等待，直到ros::spinOnce()时才被执行，但这种执行每0.5秒才发生一次，因此在每个服务调用被处理前会有最多大约0.5秒的延迟，这样导致速度消息发布产生比较大的延迟。</p>
-<p>可行的解决方案有两种：</p>
-<ol>
-<li>可以使用两个分开的线程：一个发布消息，一个处理服务回调。</li>
-<li>使用ros::spin来代替sleep/ros::spinOnce循环，并利用计数器回调函数（timer callback）来发布消息。</li>
-</ol>
-<h2 id="5-roscpp需注意的细节"><a href="#5-roscpp需注意的细节" class="headerlink" title="5 roscpp需注意的细节"></a>5 roscpp需注意的细节</h2><p><strong>NodeHandle</strong><br>NodeHandle类维护一个引用计数，只有在第一个NodeHandle对象创建时才会在节点管理器注册新的节点，只有当所有的NodeHandle对象都销毁后，节点才会注销。</p>
-<p>我们可以在一个程序文件中创建多个NodeHandle对象，但程序运行时也之后运行一个节点，无法在一个程序中通过标准的roscpp接口允许多个节点。</p>
-<p><strong>ros::ok()</strong><br>节点运行良好的情况下，ros::ok()会一直返回true，Ctrl-C可使ros::ok()返回false，但不会立即终止程序，ros::init()使用这个信号发起正常的关节程序。可利用该信号在程序退出前完成一些必要的收尾工作，如写日志文件、保持结果等。</p>
-<p>当然，除了使用Ctrl-C，在程序中调用ros::shutdown()，使用rosnode kill命令，或以相同的名字启动了其他节点都会使ros::ok()返回false。</p>
-<p><strong>ros::Rate</strong><br>ros::Rate指定循环的频率，sleep()方法在程序中产生延迟，尽最大努力确保循环按照指定的频率进行，但如果循环中的复杂计算时间超出了预期，sleep()方法产生的延迟会减少到0，这时循环是不能按照我们指定的频率完成的。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记1-基础概念/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/ROS学习笔记1-基础概念/" itemprop="url">ROS学习笔记1-基础概念</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:03:09+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-ROS是什么？"><a href="#1-ROS是什么？" class="headerlink" title="1 ROS是什么？"></a>1 ROS是什么？</h2><p>ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。</p>
-<p>我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS是管理和控制机器人硬件与软件资源的系统。</p>
-<p>ROS为我们提供了一个分布式计算的框架，丰富的功能库可以帮助我们实现机器人算法及通信接口的软件复用，其工具集也可以帮助我们快速实现功能测试，另外ROS还有拥有庞大的社区，这些都可以帮助开发者快速构建机器人应用。</p>
-<p>具体来说，ROS提供的服务包含：硬件抽象（hardware abstraction），底层设备控制（low-level device control），通用功能（commonly-used functionality），进程间消息传递（message-passing between processes）和包管理（package management）等。</p>
-<h2 id="2-文件层级概念"><a href="#2-文件层级概念" class="headerlink" title="2 文件层级概念"></a>2 文件层级概念</h2><p>ROS工程通常存放于Catkin工作空间中，Catkin工作空间通常包含src、build、devel三个文件夹，其中src文件夹存放源码、机器人模型文件等、build文件夹存放编译构建的中间文件、devel文件夹存放构建完成的库或可执行文件等。</p>
-<p>Package是ROS Catkin工作空间的最小组织单元。CMakelists.txt文件描述CMake规则，package.xml文件描述package的相关信息，这两个文件是必不可少的。其它的资源通常位于Package的约定俗成的文件夹中，如C++源文件位于src文件夹中，launch文件位于launch文件夹中，Python源文件位于scripts中等。</p>
-<h2 id="3-运算图级概念"><a href="#3-运算图级概念" class="headerlink" title="3 运算图级概念"></a>3 运算图级概念</h2><p>ROS为我们提供了一个分布式运算的架构。</p>
-<h3 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h3><p>在ROS的分布式运算架构中，拥有很多从功能上来说相对独立的节点，这些节点必须能够相互通信，节点管理器ROS Master是实现节点间通信的关键部分。</p>
-<p>命令行中通过以下指令启动ROS Master：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></p>
-<p>运行该指令，除了启动master，还会启动parameter server及日志管理节点rosout。</p>
-<p>节点启动之后会到Master中注册信息，由Master引导各个相关节点建立直接的连接（数据的传输不经过Master），实现分布式计算节点间的通信。</p>
-<p>如果Master在ROS工程启动之后停止或重启，之前启动的节点仍然能正常进行通信。但这些节点将在不会试图与重启之后Master重连，Master不会有之前已经启动的节点的信息，所以不能帮助后续启动的节点与之前启动的节点建立通信连接。</p>
-<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>节点在文件层级就是可执行文件，运行之后就成了一个进程，这个进程就是ROS分布式计算的节点，从功能上来说，通常每个节点负责一种功能的实现。</p>
-<p>节点的启动方式通常为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name</span><br></pre></td></tr></table></figure></p>
-<p>启动节点时，通过“__name”参数可以指定名字覆盖掉要启动的节点原来的名字，这样可以启动同一节点的多个副本，使用格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name __name:=node_name</span><br></pre></td></tr></table></figure></p>
-<p>否则，如果试图启动跟已启动的节点具有相同名字的新节点，会将原有的节点关闭。</p>
-<p>如果使用Ctrl-C命令终止节点，通常不会在Master中注销该节点，这样已终止的节点信息依然可以通过rosnode命令查看，可以使用rosnode cleanup命令清除注销节点的残留信息；另外如果使用rosnode kill指令关闭节点，通常不会发生上述现象。</p>
-<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p><strong>1 Topic</strong><br>ROS节点之间进行通信所利用的最重要的机制就是消息传递，在ROS中，消息有组织的放到Topic里进行传递。</p>
-<p>Topic通信是多对多的异步通信方式，Topic Publisher发布消息后不必等待响应，对于同一Topic，系统中可以同时存在多个Publisher和多个Subscriber；另外，Publisher并不知道哪个节点会接收消息，而Subscriber也并不知道接收的消息来自哪个节点，节点之间是松耦合的，这也是ROS最关键的设计特性之一。</p>
-<p>当一个节点想要分享信息时，会发布消息到对应的一个或多个话题；当一个节点想要接收消息时，会订阅所需要的一个或多个话题。ROS Master负责确保发布节点和订阅节点能找到对方；而且消息是直接从发布节点传递到订阅节点，并不经过Master。</p>
-<p>ROS提供rostopic与rosmsg两个命令行工具帮助我们查看Topic和Message的详细信息。</p>
-<p><strong>2 Service</strong><br>服务调用（service calls）是ROS中另一种通信方法。</p>
-<p>服务调用是同步通信方式，一个节点给另一个节点发送信息并等待响应，因此信息流是双向的；另外，服务调用实现的是一对一通信，每一个服务由一个节点发起，对这个服务的响应返回同一个节点。</p>
-<p>ROS提供rosservice和rossrv命令行工具帮助我们查看Service和服务类型的详细消息。</p>
-<p><strong>3 Action</strong><br>Action是类似Service的请求响应通信机制，也是一个双向的通信模式。通信双方在ROS Action Protocol下通过消息进行数据的交流通信。客户端和服务端为用户提供一个简单的API来请求目标（在客户端）或通过函数调用和回调来执行目标（在服务端）。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/01/HelloWorld/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:22:57+08:00">
-                2018-04-01
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1977,7 +2007,7 @@ and the attributes from one single parent device.
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1988,7 +2018,7 @@ and the attributes from one single parent device.
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>

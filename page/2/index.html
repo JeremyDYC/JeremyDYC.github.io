@@ -79,17 +79,13 @@
 
 
 
-<meta name="description" content="1 Topic通信-Publisher1.1 创建Publisher对象：1ros::Publisher pub = node_handle.advertise&amp;lt;message_type&amp;gt;(topic_name, queue_size); Publisher对象的创建是一个很耗时的操作，所以不应该在想发消息的时候临时创建Publisher对象，而是应该为每个要发布的Topic创建一个P">
-<meta property="og:type" content="article">
-<meta property="og:title" content="ROS学习笔记2_基础编程">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记2-基础编程/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="仰望星空">
+<meta property="og:url" content="http://JeremyDYC.github.io/page/2/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="1 Topic通信-Publisher1.1 创建Publisher对象：1ros::Publisher pub = node_handle.advertise&amp;lt;message_type&amp;gt;(topic_name, queue_size); Publisher对象的创建是一个很耗时的操作，所以不应该在想发消息的时候临时创建Publisher对象，而是应该为每个要发布的Topic创建一个P">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T01:46:12.159Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROS学习笔记2_基础编程">
-<meta name="twitter:description" content="1 Topic通信-Publisher1.1 创建Publisher对象：1ros::Publisher pub = node_handle.advertise&amp;lt;message_type&amp;gt;(topic_name, queue_size); Publisher对象的创建是一个很耗时的操作，所以不应该在想发消息的时候临时创建Publisher对象，而是应该为每个要发布的Topic创建一个P">
+<meta name="twitter:title" content="仰望星空">
 
 
 
@@ -119,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记2-基础编程/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/page/2/"/>
 
 
 
 
 
-  <title>ROS学习笔记2_基础编程 | 仰望星空</title>
+  <title>仰望星空</title>
   
 
 
@@ -144,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -227,9 +224,159 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记3_命名系统/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/ROS学习笔记3_命名系统/" itemprop="url">ROS学习笔记3_命名系统</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T13:08:32+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-全局名称"><a href="#1-全局名称" class="headerlink" title="1 全局名称"></a>1 全局名称</h2><p>  全局名称在任何地方都有明确的含义，无需额外的上下文信息（例如节点的命名空间等）来决定名称指的是哪个资源。</p>
+<p>全局名称通常由前斜杠“/”，由斜杠分开的一系列命名空间，描述资源本身的基本名称构成。</p>
+<h2 id="2-相对名称"><a href="#2-相对名称" class="headerlink" title="2 相对名称"></a>2 相对名称</h2><p>相对名称使用ROS为其提供的默认命名空间，典型特征是缺少全局名称带有的前斜杠。如果不知道相应的默认命名空间，那么相对名称不能和特定的计算资源匹配。</p>
+<p>默认命名空间是单独地为每个节点设置的，而不是在系统范围进行。ROS默认会将全局命名空间（/）作为一个节点的默认命名空间，改变默认命名空间的最好和最常用的方法是在launch文件中使用命名空间（ns）属性：</p>
+<pre><code>ns=”default-namespace”
+</code></pre><p>或是使用命令行工具启动节点时添加：</p>
+<pre><code>__ns:=default-namespace
+</code></pre><h2 id="3-私有名称"><a href="#3-私有名称" class="headerlink" title="3 私有名称"></a>3 私有名称</h2><p>私有名称使用它们的节点名称作为命名空间而不是当前默认命名空间，这是它与相对名称的区别。使用这种名称的主要目的是，有一些节点内部的资源只与本节点相关，不会与其他节点打交道，用私有名称为这些节点命名，通常是节点使用的参数，话题（Topic）通常不能以私有名称命名。</p>
+<h2 id="4-节点匿名机制"><a href="#4-节点匿名机制" class="headerlink" title="4 节点匿名机制"></a>4 节点匿名机制</h2><p>将ros::init_options::Anonymous-Name作为第四个参数传递给ros::init()，将为节点设置匿名名称，匿名不意味着节点没有名字，而是使用处理器时间（wall clock time）在节点基本名称之后追加某个额外的文本，以确保节点的名字是唯一的。因此，我们可以启动同一节点的大量副本，而不导致命名冲突。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
 
   
 
@@ -259,7 +406,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ROS学习笔记2_基础编程</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/ROS学习笔记2-基础编程/" itemprop="url">ROS学习笔记2_基础编程</a></h1>
         
 
         <div class="post-meta">
@@ -331,7 +480,9 @@
       
 
       
-        <h2 id="1-Topic通信-Publisher"><a href="#1-Topic通信-Publisher" class="headerlink" title="1 Topic通信-Publisher"></a>1 Topic通信-Publisher</h2><p><strong>1.1 创建Publisher对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Publisher pub = node_handle.advertise&lt;message_type&gt;(topic_name, queue_size);</span><br></pre></td></tr></table></figure></p>
+        
+          
+            <h2 id="1-Topic通信-Publisher"><a href="#1-Topic通信-Publisher" class="headerlink" title="1 Topic通信-Publisher"></a>1 Topic通信-Publisher</h2><p><strong>1.1 创建Publisher对象：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros::Publisher pub = node_handle.advertise&lt;message_type&gt;(topic_name, queue_size);</span><br></pre></td></tr></table></figure></p>
 <p>Publisher对象的创建是一个很耗时的操作，所以不应该在想发消息的时候临时创建Publisher对象，而是应该为每个要发布的Topic创建一个Publisher，在程序执行过程中一直使用这个Publisher。</p>
 <p>在节点间通信的过程相比于创建消息所需的时间是耗时的。在ROS中，当有新消息产生时，publish方法只负责在“发件箱”（可以认为是消息缓存区）中存储这条消息，后台有一个单独的线程负责实际发送消息。参数queue_size指定“发件箱”存储的消息的数目。</p>
 <p>如果发布者与订阅者节点是相同进程的一部分，消息会直接传送给订阅者，而不会使用任何网络传输，这一特点对于创建nodelets尤其重要，可将多个节点动态载入到相同的进程。</p>
@@ -365,6 +516,8 @@
 <p>当然，除了使用Ctrl-C，在程序中调用ros::shutdown()，使用rosnode kill命令，或以相同的名字启动了其他节点都会使ros::ok()返回false。</p>
 <p><strong>ros::Rate</strong><br>ros::Rate指定循环的频率，sleep()方法在程序中产生延迟，尽最大努力确保循环按照指定的频率进行，但如果循环中的复杂计算时间超出了预期，sleep()方法产生的延迟会减少到0，这时循环是不能按照我们指定的频率完成的。</p>
 
+          
+        
       
     </div>
     
@@ -381,32 +534,12 @@
       
 
       
-      
+
       
 
       
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/04/02/ROS学习笔记1-基础概念/" rel="next" title="ROS学习笔记1-基础概念">
-                <i class="fa fa-chevron-left"></i> ROS学习笔记1-基础概念
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/02/ROS学习笔记3_命名系统/" rel="prev" title="ROS学习笔记3_命名系统">
-                ROS学习笔记3_命名系统 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -416,11 +549,308 @@
   </article>
 
 
+    
+      
 
-    <div class="post-spread">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记1-基础概念/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/02/ROS学习笔记1-基础概念/" itemprop="url">ROS学习笔记1-基础概念</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T10:03:09+08:00">
+                2018-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-ROS是什么？"><a href="#1-ROS是什么？" class="headerlink" title="1 ROS是什么？"></a>1 ROS是什么？</h2><p>ROS（Robot Operating System），即机器人操作系统，在ROS Wiki中给出的描述是“ROS is an open-source, meta-operationg system for your robot”。</p>
+<p>我们知道，操作系统（OS）是管理和控制计算机硬件与软件资源的计算机程序，而ROS并不是传统意义上的操作系统，不过类比于传统OS的描述，可以认为ROS是管理和控制机器人硬件与软件资源的系统。</p>
+<p>ROS为我们提供了一个分布式计算的框架，丰富的功能库可以帮助我们实现机器人算法及通信接口的软件复用，其工具集也可以帮助我们快速实现功能测试，另外ROS还有拥有庞大的社区，这些都可以帮助开发者快速构建机器人应用。</p>
+<p>具体来说，ROS提供的服务包含：硬件抽象（hardware abstraction），底层设备控制（low-level device control），通用功能（commonly-used functionality），进程间消息传递（message-passing between processes）和包管理（package management）等。</p>
+<h2 id="2-文件层级概念"><a href="#2-文件层级概念" class="headerlink" title="2 文件层级概念"></a>2 文件层级概念</h2><p>ROS工程通常存放于Catkin工作空间中，Catkin工作空间通常包含src、build、devel三个文件夹，其中src文件夹存放源码、机器人模型文件等、build文件夹存放编译构建的中间文件、devel文件夹存放构建完成的库或可执行文件等。</p>
+<p>Package是ROS Catkin工作空间的最小组织单元。CMakelists.txt文件描述CMake规则，package.xml文件描述package的相关信息，这两个文件是必不可少的。其它的资源通常位于Package的约定俗成的文件夹中，如C++源文件位于src文件夹中，launch文件位于launch文件夹中，Python源文件位于scripts中等。</p>
+<h2 id="3-运算图级概念"><a href="#3-运算图级概念" class="headerlink" title="3 运算图级概念"></a>3 运算图级概念</h2><p>ROS为我们提供了一个分布式运算的架构。</p>
+<h3 id="Master"><a href="#Master" class="headerlink" title="Master"></a>Master</h3><p>在ROS的分布式运算架构中，拥有很多从功能上来说相对独立的节点，这些节点必须能够相互通信，节点管理器ROS Master是实现节点间通信的关键部分。</p>
+<p>命令行中通过以下指令启动ROS Master：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">roscore</span><br></pre></td></tr></table></figure></p>
+<p>运行该指令，除了启动master，还会启动parameter server及日志管理节点rosout。</p>
+<p>节点启动之后会到Master中注册信息，由Master引导各个相关节点建立直接的连接（数据的传输不经过Master），实现分布式计算节点间的通信。</p>
+<p>如果Master在ROS工程启动之后停止或重启，之前启动的节点仍然能正常进行通信。但这些节点将在不会试图与重启之后Master重连，Master不会有之前已经启动的节点的信息，所以不能帮助后续启动的节点与之前启动的节点建立通信连接。</p>
+<h3 id="Node"><a href="#Node" class="headerlink" title="Node"></a>Node</h3><p>节点在文件层级就是可执行文件，运行之后就成了一个进程，这个进程就是ROS分布式计算的节点，从功能上来说，通常每个节点负责一种功能的实现。</p>
+<p>节点的启动方式通常为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name</span><br></pre></td></tr></table></figure></p>
+<p>启动节点时，通过“__name”参数可以指定名字覆盖掉要启动的节点原来的名字，这样可以启动同一节点的多个副本，使用格式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun package_name executable_name __name:=node_name</span><br></pre></td></tr></table></figure></p>
+<p>否则，如果试图启动跟已启动的节点具有相同名字的新节点，会将原有的节点关闭。</p>
+<p>如果使用Ctrl-C命令终止节点，通常不会在Master中注销该节点，这样已终止的节点信息依然可以通过rosnode命令查看，可以使用rosnode cleanup命令清除注销节点的残留信息；另外如果使用rosnode kill指令关闭节点，通常不会发生上述现象。</p>
+<h3 id="通信机制"><a href="#通信机制" class="headerlink" title="通信机制"></a>通信机制</h3><p><strong>1 Topic</strong><br>ROS节点之间进行通信所利用的最重要的机制就是消息传递，在ROS中，消息有组织的放到Topic里进行传递。</p>
+<p>Topic通信是多对多的异步通信方式，Topic Publisher发布消息后不必等待响应，对于同一Topic，系统中可以同时存在多个Publisher和多个Subscriber；另外，Publisher并不知道哪个节点会接收消息，而Subscriber也并不知道接收的消息来自哪个节点，节点之间是松耦合的，这也是ROS最关键的设计特性之一。</p>
+<p>当一个节点想要分享信息时，会发布消息到对应的一个或多个话题；当一个节点想要接收消息时，会订阅所需要的一个或多个话题。ROS Master负责确保发布节点和订阅节点能找到对方；而且消息是直接从发布节点传递到订阅节点，并不经过Master。</p>
+<p>ROS提供rostopic与rosmsg两个命令行工具帮助我们查看Topic和Message的详细信息。</p>
+<p><strong>2 Service</strong><br>服务调用（service calls）是ROS中另一种通信方法。</p>
+<p>服务调用是同步通信方式，一个节点给另一个节点发送信息并等待响应，因此信息流是双向的；另外，服务调用实现的是一对一通信，每一个服务由一个节点发起，对这个服务的响应返回同一个节点。</p>
+<p>ROS提供rosservice和rossrv命令行工具帮助我们查看Service和服务类型的详细消息。</p>
+<p><strong>3 Action</strong><br>Action是类似Service的请求响应通信机制，也是一个双向的通信模式。通信双方在ROS Action Protocol下通过消息进行数据的交流通信。客户端和服务端为用户提供一个简单的API来请求目标（在客户端）或通过函数调用和回调来执行目标（在服务端）。</p>
+
+          
+        
       
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/04/01/HelloWorld/" itemprop="url">Hello World</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:22:57+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
@@ -428,10 +858,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -452,17 +878,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -513,22 +930,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Topic通信-Publisher"><span class="nav-number">1.</span> <span class="nav-text">1 Topic通信-Publisher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Topic通信-Subscriber"><span class="nav-number">2.</span> <span class="nav-text">2 Topic通信-Subscriber</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Service通信-client"><span class="nav-number">3.</span> <span class="nav-text">3 Service通信-client</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Service通信-server"><span class="nav-number">4.</span> <span class="nav-text">4 Service通信-server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-roscpp需注意的细节"><span class="nav-number">5.</span> <span class="nav-text">5 roscpp需注意的细节</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -662,10 +1063,6 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 
