@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROS学习笔记7_消息录制回放">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制回放/index.html">
+<meta property="og:title" content="ROS学习笔记8_Catkin编译系统">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/07/31/ROS学习笔记8-Catkin编译系统/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T01:30:09.842Z">
+<meta property="og:updated_time" content="2018-07-31T05:35:16.924Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROS学习笔记7_消息录制回放">
-<meta name="twitter:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
+<meta name="twitter:title" content="ROS学习笔记8_Catkin编译系统">
 
 
 
@@ -119,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制回放/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/07/31/ROS学习笔记8-Catkin编译系统/"/>
 
 
 
 
 
-  <title>ROS学习笔记7_消息录制回放 | 仰望星空</title>
+  <title>ROS学习笔记8_Catkin编译系统 | 仰望星空</title>
   
 
 
@@ -242,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制回放/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/07/31/ROS学习笔记8-Catkin编译系统/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -259,7 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ROS学习笔记7_消息录制回放</h1>
+          <h1 class="post-title" itemprop="name headline">ROS学习笔记8_Catkin编译系统</h1>
         
 
         <div class="post-meta">
@@ -271,8 +268,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T16:11:32+08:00">
-                2018-04-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-31T13:35:16+08:00">
+                2018-07-31
               </time>
             
 
@@ -281,28 +278,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -331,30 +306,7 @@
       
 
       
-        <p>通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。</p>
-<p>包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。</p>
-<h2 id="1-录制包文件"><a href="#1-录制包文件" class="headerlink" title="1 录制包文件"></a>1 录制包文件</h2><p>录制发布到指定的话题上的消息到指定的bag文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –O filename.bag topic-names</span><br></pre></td></tr></table></figure></p>
-<p>另外还有一些有用的选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –a 记录当前发布的所有话题的消息</span><br><span class="line"></span><br><span class="line">rosbag record –j 启用包文件的压缩</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-回放包文件"><a href="#2-回放包文件" class="headerlink" title="2 回放包文件"></a>2 回放包文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play filename.bag</span><br></pre></td></tr></table></figure>
-<p>存储在包文件中个的消息将被回放，而且回放时会保持与其原始发布时同样的顺序和时间间隔。</p>
-<p><strong>录制与回放注意事项:</strong></p>
-<ol>
-<li><p>rosbag会创建新的节点，该节点订阅指定的话题来记录消息，并且使用匿名机制，因此我们可以同时运行多个rosbag创建的节点实例。</p>
-</li>
-<li><p>同样的，在回放bag文件时，rosbag同样会创建新的节点发布bag文件中存储的消息。</p>
-</li>
-<li><p>rosbag不会记录服务调用内容，只记录发布到话题的消息。</p>
-</li>
-</ol>
-<h2 id="3-launch文件中使用rosbag"><a href="#3-launch文件中使用rosbag" class="headerlink" title="3  launch文件中使用rosbag"></a>3  launch文件中使用rosbag</h2><p>rosbag package里也提供了名为record和play的可执行文件，因此可以在launch文件中使用rosbag的功能：</p>
-<ol>
-<li><p>录制包文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”record” type=”record” args=”-O filename.bag topic-names” /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>回放包文件：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”play” type=”play” args=”filename.bag” /&gt;</span><br></pre></td></tr></table></figure></li>
-</ol>
-
+        
       
     </div>
     
@@ -378,8 +330,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/02/ROS学习笔记6-参数服务/" rel="next" title="ROS学习笔记6_参数服务">
-                <i class="fa fa-chevron-left"></i> ROS学习笔记6_参数服务
+              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="next" title="Linux_udev规则编写及配置">
+                <i class="fa fa-chevron-left"></i> Linux_udev规则编写及配置
               </a>
             
           </div>
@@ -387,10 +339,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="prev" title="Linux_udev规则编写及配置">
-                Linux_udev规则编写及配置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -442,17 +390,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -467,7 +406,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -503,22 +442,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-录制包文件"><span class="nav-number">1.</span> <span class="nav-text">1 录制包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-回放包文件"><span class="nav-number">2.</span> <span class="nav-text">2 回放包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-launch文件中使用rosbag"><span class="nav-number">3.</span> <span class="nav-text">3  launch文件中使用rosbag</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

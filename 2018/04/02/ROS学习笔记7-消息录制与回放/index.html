@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/01/HelloWorld/index.html">
+<meta property="og:title" content="ROS学习笔记7_消息录制与回放">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制与回放/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-06-21T06:55:27.882Z">
+<meta property="og:updated_time" content="2018-07-31T05:36:17.499Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="ROS学习笔记7_消息录制与回放">
+<meta name="twitter:description" content="通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。 包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。 1 录制包文件录制发布到指定的话题上的消息到指定的bag文件中:1rosbag record –O">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制与回放/"/>
 
 
 
 
 
-  <title>Hello World | 仰望星空</title>
+  <title>ROS学习笔记7_消息录制与回放 | 仰望星空</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/01/HelloWorld/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记7-消息录制与回放/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">ROS学习笔记7_消息录制与回放</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-01T22:22:57+08:00">
-                2018-04-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T16:11:32+08:00">
+                2018-04-02
               </time>
             
 
@@ -281,6 +281,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">ROS学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -309,15 +331,29 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>通过rosbag，能够将发布在一个多个话题上的消息录制到一个包文件（bag file）中，然后可以回放这些消息，重现相似的运行过程，这会极大的提高我们测试机器人算法的便利性。</p>
+<p>包文件（bag file）是指用于存储带时间戳的ROS消息的特殊格式文件，rosbag命令行工具可以用来录制和回放包文件。</p>
+<h2 id="1-录制包文件"><a href="#1-录制包文件" class="headerlink" title="1 录制包文件"></a>1 录制包文件</h2><p>录制发布到指定的话题上的消息到指定的bag文件中:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –O filename.bag topic-names</span><br></pre></td></tr></table></figure></p>
+<p>另外还有一些有用的选项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosbag record –a 记录当前发布的所有话题的消息</span><br><span class="line"></span><br><span class="line">rosbag record –j 启用包文件的压缩</span><br></pre></td></tr></table></figure></p>
+<h2 id="2-回放包文件"><a href="#2-回放包文件" class="headerlink" title="2 回放包文件"></a>2 回放包文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosbag play filename.bag</span><br></pre></td></tr></table></figure>
+<p>存储在包文件中个的消息将被回放，而且回放时会保持与其原始发布时同样的顺序和时间间隔。</p>
+<p><strong>录制与回放注意事项:</strong></p>
+<ol>
+<li><p>rosbag会创建新的节点，该节点订阅指定的话题来记录消息，并且使用匿名机制，因此我们可以同时运行多个rosbag创建的节点实例。</p>
+</li>
+<li><p>同样的，在回放bag文件时，rosbag同样会创建新的节点发布bag文件中存储的消息。</p>
+</li>
+<li><p>rosbag不会记录服务调用内容，只记录发布到话题的消息。</p>
+</li>
+</ol>
+<h2 id="3-launch文件中使用rosbag"><a href="#3-launch文件中使用rosbag" class="headerlink" title="3  launch文件中使用rosbag"></a>3  launch文件中使用rosbag</h2><p>rosbag package里也提供了名为record和play的可执行文件，因此可以在launch文件中使用rosbag的功能：</p>
+<ol>
+<li><p>录制包文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”record” type=”record” args=”-O filename.bag topic-names” /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回放包文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;node pkg=”rosbag” name=”play” type=”play” args=”filename.bag” /&gt;</span><br></pre></td></tr></table></figure></li>
+</ol>
 
       
     </div>
@@ -342,14 +378,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/02/ROS学习笔记6-参数服务/" rel="next" title="ROS学习笔记6_参数服务">
+                <i class="fa fa-chevron-left"></i> ROS学习笔记6_参数服务
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/02/ROS学习笔记1-基础概念/" rel="prev" title="ROS学习笔记1-基础概念">
-                ROS学习笔记1-基础概念 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="prev" title="Linux_udev规则编写及配置">
+                Linux_udev规则编写及配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -473,7 +513,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-录制包文件"><span class="nav-number">1.</span> <span class="nav-text">1 录制包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-回放包文件"><span class="nav-number">2.</span> <span class="nav-text">2 回放包文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-launch文件中使用rosbag"><span class="nav-number">3.</span> <span class="nav-text">3  launch文件中使用rosbag</span></a></li></ol></div>
             
 
           </div>
