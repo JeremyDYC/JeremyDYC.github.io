@@ -239,6 +239,145 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/08/02/ROS-ros-control/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jeremy Dong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="仰望星空">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/08/02/ROS-ros-control/" itemprop="url">ROS-ros_control</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T14:36:09+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>##1 ros_control概述<br>构建ros_control这样的robot-control框架的主要原因是在ROS中缺少实时安全通讯层，ros_control以完全robot-agnostic的方式关注实时性能（real-time performance）和控制器共用（sharing of controllers），帮助我们实现和管理机器人控制器。</p>
+<p>ros_control的控制器生命周期（controller-lifecycle）、硬件资源管理（hardware resource management）和硬件接口抽象（abstractions on hardware interfaces）等实现方案尽可能少的考虑硬件和操作系统，使得ros_control框架更加通用化。</p>
+<p>ros_control向MoveIt!与ROS Navigation stack开放标准的ROS接口，因此将支持ros_control的移动平台与机械臂结合在一起不需要编写额外的代码，只需配置controller文件即可。</p>
+<p>ros_control提供一些库以支持实现自主设计的控制器。</p>
+<p><img src="http://wiki.ros.org/ros_control?action=AttachFile&amp;do=get&amp;target=gazebo_ros_control.png" alt="" title="ros control overview"></p>
+<p>##2 ros_control repository</p>
+<p>###2.1 hardware_interface<br>ros_control框架的基础是硬件抽象层（Hardware Abstraction Layer），这是连接各种仿真和真实机器人的桥梁，相当于对我们要控制的机器人的抽象，或者说对被控机器人的模型描述。</p>
+<p>硬件抽象层由hardware_interface::RobotHW类实现，具体的机器人实现都必须继承这个类。这个类的硬件实例模型由机器人提供，例如电动或液压执行器，编码器和力传感器等传感器。我们可以集成多种形式的硬件，仿真与真实机器人都可以。</p>
+<p>一种可能的理想的构建机器人控制系统的方式是把已经实现的RobotHW实例组合到一起，各个部件来自于不同的供应商，每一个供应商都有自己特定的RobotHW实例。</p>
+<p>hardware_interface包的其余部分定义了read-only或read-write类型的关节和执行器接口以对硬件进行抽象，例如state，position，velocity和effort接口等。这些接口是ros_control实现的标准化的接口，我们可以直接用来实例化RobotHW类，构建我们的机器人模型，当然，如果这些标准化接口不能满足要求时，我们也可以构建自己的抽象接口。</p>
+<p>###2.2 controller_manager<br>controller_manager负责管理控制器的生命周期，通过接口管理硬件资源，处理控制器间的资源冲突等。</p>
+<p>controller的生命周期不是静态的，可以通过controller_manager提供的ROS Service在运行时进行查询和调整，这些服务允许我们在运行时启动、停止和配置控制器。</p>
+<p>###2.3 ros_control的其它package<br>ros_control还提供软件库处理实时ROS通信（real-time ROS communication），传动（transmissions）和关节限制（joint limits）。</p>
+<p>realtime_tools包增加了类以realtime-safe的方式处理ROS通信。</p>
+<p>transmission_interface包提供类实现joint-space和actuator-space的转换，例如：简单的减速器（simple reducer），四杆机构（four-bar linkage），差分传动（differential transmissions）等。ROS的机器人运动学、动力学描述文件URDF支持对transmission的描述。</p>
+<p>joint_limits_interface包包含表示关节限制（joint limits）的数据结构，通过URDF或yaml文件描述它们的方法、执行这些限制的方法。</p>
+<p>control_toolbox提供写controller时有用的组件：一个PID controller类，smoothers，正弦波和噪声生成器（sine-wave and noise generators）。</p>
+<p>##3 ros_controllers repository<br>ros_controllers仓库存放一些已有的controllers，支持绝大部分使用情况，例如机械臂、移动机器人、人形机器人等。</p>
+<p>位置控制的机器人使用MoveIt!进行规划时，经常使用joint_trajectory_controller。</p>
+<p>control_msgs提供ros_controllers中提供的大部分controllers所需的ROS messages。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/06/21/Linux_udev规则编写及配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1798,165 +1937,6 @@ and the attributes from one single parent device.
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记4_日志系统/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Jeremy Dong">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="仰望星空">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/02/ROS学习笔记4_日志系统/" itemprop="url">ROS学习笔记4_日志系统</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T13:58:17+08:00">
-                2018-04-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="1-日志的生成"><a href="#1-日志的生成" class="headerlink" title="1 日志的生成"></a>1 日志的生成</h2><p><strong>1.1 ROS_INFO_STREAM:</strong><br>ROS_INFO_STREAM(message)这样的宏可生成日志消息流，其中，message可以处理C++中标准输出流（ostream）中的各种表达式，比如std::cout，在一些数据类型上使用“&lt;&lt;”操作符等；也可以处理标准流操作符，如std::fixed，std::setprecision，std::boolalpha等。</p>
-<p>需要注意的是，这些标准流操作符的作用范围只限于其出现的日志消息中，在其他日志消息中，任何想要使用的操作符必须重新插入。原因是ROS_INFO_STREAM这样的宏展开对应的短小代码块构造了一个标准字符串流（std::stringstream）对象，并将我们提供的参数插入这个字符串流；然后，这些代码将字符串流找那个完全格式化的内容发送至一个内部的日志系统，这个过程完成后，标准字符串流对象将被销毁，它的内部状态都将丢失。</p>
-<p>另外，message中也没必要使用std::endl等行终止符，因为日志系统本身是面向行的，调用这些宏中任意一个将生成显示为一行的一个完整的日志消息。</p>
-<p><strong>1.2 ROS_INFO:</strong><br>ROS_INFO_STREAM宏提供了C++风格的输出流接口，ROS_INFO宏提供格式输出函数printf风格的接口。</p>
-<p><strong>1.3 ROS_INFO_STREAM_ONCE:</strong><br>ROS_INFO_STREAM_ONCE宏内部使用static变量确保宏在第一次被调用的时候生成消息，后续再次被调用时则不产生新的消息。比如在循环中使用这个宏，那么只在第一个循环产生日志消息，后续循环不再产生。</p>
-<p><strong>1.4 ROS_INFO_STREAM_THROTTLE:</strong><br>ROS_INFO_STREAM_THROTTLE(interval,message)宏通过interval指定相邻日志消息出现的最小时间间隔，第一次执行时会生成日志消息，随后必须经过大于指定的时间间隔的时间才会生成新的日志消息。</p>
-<h2 id="2-日志的查看"><a href="#2-日志的查看" class="headerlink" title="2 日志的查看"></a>2 日志的查看</h2><p><strong>2.1 控制台</strong><br>通过ROSCONSOLE_FORMAT环境变量来调整日志消息打印到控制台的格式，默认格式是：</p>
-<pre><code>[${severity}][${time}]:${message}
-</code></pre><p>除了默认的域，还可选择其他的域，如用${file}、${line}、${function}查看生成日志消息的源代码位置；用${node}域查看生成日志的节点名称等。</p>
-<p> roslaunch工具默认不会将标准输出和标准错误从其生成的节点导入至自己的输出流，为了查看节点的输出，必须显式的使用output=”screen”属性，或在命令行中roslaunch命令后使用“–screen”参数。</p>
-<p> <strong>2.2 /rosout话题</strong><br> /rosout节点通过/rosout话题将系统中所有节点产生的日志汇总，通过/rosout_agg话题进行发布，通常/rosout节点作为系统中唯一的日志消息订阅节点，这样可以避免系统中很多节点同时订阅/rosout话题时产生的大的系统开销。调试工具通过订阅汇总之后的/rosout_agg话题就可以获得完整的日志消息流。</p>
-<p> <strong>2.3 日志文件</strong><br> /rosout节点还会生成记录日志消息的日志文件，文件名类似于：</p>
-<pre><code class="bash">~/.ros/<span class="built_in">log</span>/run_id/rosout.log
-</code></pre>
-<p>运行标识码run_id是一个通用唯一识别码（UUID），Master运行时基于计算机的MAC地址和当前的时间生成。</p>
-<p>rosclean check指令查看被ROS日志消耗的硬盘空间，rosclean purge删除所有已经存在的ROS日志。</p>
-<h2 id="3-日志级别的调整"><a href="#3-日志级别的调整" class="headerlink" title="3 日志级别的调整"></a>3 日志级别的调整</h2><p>每个节点都会提供set_logger_level服务，通过调用该服务可以调整节点产生日志的级别，ROS的C++程序默认只生成INFO或更高级别的消息。</p>
-<p>ROS程序内容可通过调用ROS实现日志功能的log4cxx提供的接口调整节点的日志级别。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2007,7 +1987,7 @@ and the attributes from one single parent device.
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

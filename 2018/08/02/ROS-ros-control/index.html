@@ -79,20 +79,19 @@
 
 
 
-<meta name="description" content="Planning Scene MonitorPlanning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。 Planning scene monitor接收以下信息： State Information：通过joint_states话题 Sensor Information：使用World Geome">
+<meta name="description" content="##1 ros_control概述构建ros_control这样的robot-control框架的主要原因是在ROS中缺少实时安全通讯层，ros_control以完全robot-agnostic的方式关注实时性能（real-time performance）和控制器共用（sharing of controllers），帮助我们实现和管理机器人控制器。 ros_control的控制器生命周期（con">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MoveIt!学习笔记3-Planning Scene">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记3-Planning Scene/index.html">
+<meta property="og:title" content="ROS-ros_control">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/08/02/ROS-ros-control/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="Planning Scene MonitorPlanning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。 Planning scene monitor接收以下信息： State Information：通过joint_states话题 Sensor Information：使用World Geome">
+<meta property="og:description" content="##1 ros_control概述构建ros_control这样的robot-control框架的主要原因是在ROS中缺少实时安全通讯层，ros_control以完全robot-agnostic的方式关注实时性能（real-time performance）和控制器共用（sharing of controllers），帮助我们实现和管理机器人控制器。 ros_control的控制器生命周期（con">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg">
-<meta property="og:image" content="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.004.jpg">
-<meta property="og:updated_time" content="2018-07-31T09:41:07.022Z">
+<meta property="og:image" content="http://wiki.ros.org/ros_control?action=AttachFile&do=get&target=gazebo_ros_control.png">
+<meta property="og:updated_time" content="2018-08-02T06:49:24.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MoveIt!学习笔记3-Planning Scene">
-<meta name="twitter:description" content="Planning Scene MonitorPlanning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。 Planning scene monitor接收以下信息： State Information：通过joint_states话题 Sensor Information：使用World Geome">
-<meta name="twitter:image" content="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg">
+<meta name="twitter:title" content="ROS-ros_control">
+<meta name="twitter:description" content="##1 ros_control概述构建ros_control这样的robot-control框架的主要原因是在ROS中缺少实时安全通讯层，ros_control以完全robot-agnostic的方式关注实时性能（real-time performance）和控制器共用（sharing of controllers），帮助我们实现和管理机器人控制器。 ros_control的控制器生命周期（con">
+<meta name="twitter:image" content="http://wiki.ros.org/ros_control?action=AttachFile&do=get&target=gazebo_ros_control.png">
 
 
 
@@ -122,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记3-Planning Scene/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/08/02/ROS-ros-control/"/>
 
 
 
 
 
-  <title>MoveIt!学习笔记3-Planning Scene | 仰望星空</title>
+  <title>ROS-ros_control | 仰望星空</title>
   
 
 
@@ -245,7 +244,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/03/MoveIt!学习笔记3-Planning Scene/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/08/02/ROS-ros-control/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -262,7 +261,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">MoveIt!学习笔记3-Planning Scene</h1>
+          <h1 class="post-title" itemprop="name headline">ROS-ros_control</h1>
         
 
         <div class="post-meta">
@@ -274,8 +273,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T22:27:50+08:00">
-                2018-04-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T14:36:09+08:00">
+                2018-08-02
               </time>
             
 
@@ -284,28 +283,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/MoveIt-学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">MoveIt!学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -334,24 +311,26 @@
       
 
       
-        <h2 id="Planning-Scene-Monitor"><a href="#Planning-Scene-Monitor" class="headerlink" title="Planning Scene Monitor"></a>Planning Scene Monitor</h2><p>Planning scene用于呈现机器人周围的世界及机器人自身的状态，它主要由MoveGroup节点中的planning scene monitor进行维护。</p>
-<p>Planning scene monitor接收以下信息：</p>
-<p>State Information：通过joint_states话题</p>
-<p>Sensor Information：使用World Geometry Monitor</p>
-<p>World geometry information：通过用户输入的planning_scene话题</p>
-<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.0031.jpg" alt="" title="planning scene monitor"></p>
-<h2 id="World-Geometry-Monitor"><a href="#World-Geometry-Monitor" class="headerlink" title="World Geometry Monitor"></a>World Geometry Monitor</h2><p>World Geometry Monitor使用机器人传感器信息及用户输入构建world geometry。具体来说，World Geometry Monitor使用Occupancy Map Monitor对机器人周围环境进行3D呈现，并且通过planning_scene话题的信息来向场景中增加物体信息。</p>
-<h2 id="Occupancy-Map-Monitor（3D-Perception）"><a href="#Occupancy-Map-Monitor（3D-Perception）" class="headerlink" title="Occupancy Map Monitor（3D Perception）"></a>Occupancy Map Monitor（3D Perception）</h2><p>MoveIt!通过Occupancy Map Monitor进行3D感知，Occupancy Map Monitor使用插件结构操控不同种类的传感器，MoveIt!内置支持两种类型的输入：</p>
-<p><img src="http://moveit.ros.org/wordpress/wp-content/uploads/2013/12/Overview.004.jpg" alt="" title="World Geometry Monitor"></p>
-<ol>
-<li><p><em>Point clouds：</em>由point cloud occupancy map updater插件处理</p>
-</li>
-<li><p><em>Depth images：</em>由depth image occupancy map updater插件处理</p>
-</li>
-</ol>
-<p>除此之外，我们可以以插件的形式增加自己的updater类型到Occupancy Map Monitor中。</p>
-<p>Occupancy Map Monitor使用Octomap维护环境的occupancy map。Octomap可以对独立的单元编写概率信息，但MoveIt!当前没有使用这些信息。另外，Octomap可以直接传输到MoveIt!使用的碰撞探测库FCL。</p>
-<p>Depth image occupancy map updater包含自己的self-filter，它会从深度图像中移走机器人的可视化部分，主要通过机器人当前状态信息执行该操作。</p>
+        <p>##1 ros_control概述<br>构建ros_control这样的robot-control框架的主要原因是在ROS中缺少实时安全通讯层，ros_control以完全robot-agnostic的方式关注实时性能（real-time performance）和控制器共用（sharing of controllers），帮助我们实现和管理机器人控制器。</p>
+<p>ros_control的控制器生命周期（controller-lifecycle）、硬件资源管理（hardware resource management）和硬件接口抽象（abstractions on hardware interfaces）等实现方案尽可能少的考虑硬件和操作系统，使得ros_control框架更加通用化。</p>
+<p>ros_control向MoveIt!与ROS Navigation stack开放标准的ROS接口，因此将支持ros_control的移动平台与机械臂结合在一起不需要编写额外的代码，只需配置controller文件即可。</p>
+<p>ros_control提供一些库以支持实现自主设计的控制器。</p>
+<p><img src="http://wiki.ros.org/ros_control?action=AttachFile&amp;do=get&amp;target=gazebo_ros_control.png" alt="" title="ros control overview"></p>
+<p>##2 ros_control repository</p>
+<p>###2.1 hardware_interface<br>ros_control框架的基础是硬件抽象层（Hardware Abstraction Layer），这是连接各种仿真和真实机器人的桥梁，相当于对我们要控制的机器人的抽象，或者说对被控机器人的模型描述。</p>
+<p>硬件抽象层由hardware_interface::RobotHW类实现，具体的机器人实现都必须继承这个类。这个类的硬件实例模型由机器人提供，例如电动或液压执行器，编码器和力传感器等传感器。我们可以集成多种形式的硬件，仿真与真实机器人都可以。</p>
+<p>一种可能的理想的构建机器人控制系统的方式是把已经实现的RobotHW实例组合到一起，各个部件来自于不同的供应商，每一个供应商都有自己特定的RobotHW实例。</p>
+<p>hardware_interface包的其余部分定义了read-only或read-write类型的关节和执行器接口以对硬件进行抽象，例如state，position，velocity和effort接口等。这些接口是ros_control实现的标准化的接口，我们可以直接用来实例化RobotHW类，构建我们的机器人模型，当然，如果这些标准化接口不能满足要求时，我们也可以构建自己的抽象接口。</p>
+<p>###2.2 controller_manager<br>controller_manager负责管理控制器的生命周期，通过接口管理硬件资源，处理控制器间的资源冲突等。</p>
+<p>controller的生命周期不是静态的，可以通过controller_manager提供的ROS Service在运行时进行查询和调整，这些服务允许我们在运行时启动、停止和配置控制器。</p>
+<p>###2.3 ros_control的其它package<br>ros_control还提供软件库处理实时ROS通信（real-time ROS communication），传动（transmissions）和关节限制（joint limits）。</p>
+<p>realtime_tools包增加了类以realtime-safe的方式处理ROS通信。</p>
+<p>transmission_interface包提供类实现joint-space和actuator-space的转换，例如：简单的减速器（simple reducer），四杆机构（four-bar linkage），差分传动（differential transmissions）等。ROS的机器人运动学、动力学描述文件URDF支持对transmission的描述。</p>
+<p>joint_limits_interface包包含表示关节限制（joint limits）的数据结构，通过URDF或yaml文件描述它们的方法、执行这些限制的方法。</p>
+<p>control_toolbox提供写controller时有用的组件：一个PID controller类，smoothers，正弦波和噪声生成器（sine-wave and noise generators）。</p>
+<p>##3 ros_controllers repository<br>ros_controllers仓库存放一些已有的controllers，支持绝大部分使用情况，例如机械臂、移动机器人、人形机器人等。</p>
+<p>位置控制的机器人使用MoveIt!进行规划时，经常使用joint_trajectory_controller。</p>
+<p>control_msgs提供ros_controllers中提供的大部分controllers所需的ROS messages。</p>
 
       
     </div>
@@ -376,8 +355,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/03/MoveIt!学习笔记2-Motion Planning/" rel="next" title="MoveIt!学习笔记2-Motion Planning">
-                <i class="fa fa-chevron-left"></i> MoveIt!学习笔记2-Motion Planning
+              <a href="/2018/06/21/Linux_udev规则编写及配置/" rel="next" title="Linux_udev规则编写及配置">
+                <i class="fa fa-chevron-left"></i> Linux_udev规则编写及配置
               </a>
             
           </div>
@@ -385,10 +364,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/03/MoveIt!学习笔记4-Kinematics and Collision Checking/" rel="prev" title="MoveIt!学习笔记4-Kinematics and Collision Checking">
-                MoveIt!学习笔记4-Kinematics and Collision Checking <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -440,17 +415,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -501,22 +467,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Planning-Scene-Monitor"><span class="nav-number">1.</span> <span class="nav-text">Planning Scene Monitor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#World-Geometry-Monitor"><span class="nav-number">2.</span> <span class="nav-text">World Geometry Monitor</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Occupancy-Map-Monitor（3D-Perception）"><span class="nav-number">3.</span> <span class="nav-text">Occupancy Map Monitor（3D Perception）</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
