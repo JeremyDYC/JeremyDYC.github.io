@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="Linux下的编译器有gcc、g++，随着源文件的增加，直接用gcc/g++命令的方式显得效率低下，大家开始用Makefile进行编译。然而，随着工程体量的增大，Makefile也不能满足要求，于是就出现了CMake工具。 CMake是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。ROS采用CMake，并对CMake进行了扩展，形成了Catkin">
+<meta name="description" content="Ubuntu16.04使用Systemd配置开机自启服务，通过服务启动想要开机运行的程序，如机器人的控制程序，相关链接为：  Systemd命令篇 Systemd实战篇 配置方法 1 配置方法 2">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ROS学习笔记8-Catkin编译系统">
-<meta property="og:url" content="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记8-Catkin编译系统/index.html">
+<meta property="og:title" content="Linux_Systemd">
+<meta property="og:url" content="http://JeremyDYC.github.io/2018/10/11/Linux-service编写及配置/index.html">
 <meta property="og:site_name" content="仰望星空">
-<meta property="og:description" content="Linux下的编译器有gcc、g++，随着源文件的增加，直接用gcc/g++命令的方式显得效率低下，大家开始用Makefile进行编译。然而，随着工程体量的增大，Makefile也不能满足要求，于是就出现了CMake工具。 CMake是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。ROS采用CMake，并对CMake进行了扩展，形成了Catkin">
+<meta property="og:description" content="Ubuntu16.04使用Systemd配置开机自启服务，通过服务启动想要开机运行的程序，如机器人的控制程序，相关链接为：  Systemd命令篇 Systemd实战篇 配置方法 1 配置方法 2">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-07-31T06:26:21.675Z">
+<meta property="og:updated_time" content="2018-10-11T02:27:38.092Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ROS学习笔记8-Catkin编译系统">
-<meta name="twitter:description" content="Linux下的编译器有gcc、g++，随着源文件的增加，直接用gcc/g++命令的方式显得效率低下，大家开始用Makefile进行编译。然而，随着工程体量的增大，Makefile也不能满足要求，于是就出现了CMake工具。 CMake是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。ROS采用CMake，并对CMake进行了扩展，形成了Catkin">
+<meta name="twitter:title" content="Linux_Systemd">
+<meta name="twitter:description" content="Ubuntu16.04使用Systemd配置开机自启服务，通过服务启动想要开机运行的程序，如机器人的控制程序，相关链接为：  Systemd命令篇 Systemd实战篇 配置方法 1 配置方法 2">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记8-Catkin编译系统/"/>
+  <link rel="canonical" href="http://JeremyDYC.github.io/2018/10/11/Linux-service编写及配置/"/>
 
 
 
 
 
-  <title>ROS学习笔记8-Catkin编译系统 | 仰望星空</title>
+  <title>Linux_Systemd | 仰望星空</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/04/02/ROS学习笔记8-Catkin编译系统/">
+    <link itemprop="mainEntityOfPage" href="http://JeremyDYC.github.io/2018/10/11/Linux-service编写及配置/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jeremy Dong">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ROS学习笔记8-Catkin编译系统</h1>
+          <h1 class="post-title" itemprop="name headline">Linux_Systemd</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-02T18:10:52+08:00">
-                2018-04-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-11T10:07:59+08:00">
+                2018-10-11
               </time>
             
 
@@ -281,28 +281,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ROS学习笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">ROS学习笔记</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -331,22 +309,13 @@
       
 
       
-        <p>Linux下的编译器有gcc、g++，随着源文件的增加，直接用gcc/g++命令的方式显得效率低下，大家开始用Makefile进行编译。然而，随着工程体量的增大，Makefile也不能满足要求，于是就出现了CMake工具。</p>
-<p>CMake是对make工具的生成器，是更高层的工具，它简化了编译构建过程，能够管理大型项目，具有良好的扩展性。ROS采用CMake，并对CMake进行了扩展，形成了Catkin编译系统。</p>
-<h2 id="1-Catkin软件包（package）的特点"><a href="#1-Catkin软件包（package）的特点" class="headerlink" title="1 Catkin软件包（package）的特点"></a>1 Catkin软件包（package）的特点</h2><p>一个Catkin软件包（package）必须要包括两个文件：</p>
+        <p>Ubuntu16.04使用Systemd配置开机自启服务，通过服务启动想要开机运行的程序，如机器人的控制程序，相关链接为：</p>
 <ol>
-<li>package.xml：包含了package的描述信息</li>
-<li>CMakeLists.txt：构建package所需的CMake文件，调用Catkin的函数/宏，解析package.xml，找到其他依赖的catkin软件包，将本软件包添加到环境变量</li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html" target="_blank" rel="noopener">Systemd命令篇</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html" target="_blank" rel="noopener">Systemd实战篇</a></li>
+<li><a href="https://my.oschina.net/janpoem/blog/802708" target="_blank" rel="noopener">配置方法 1</a></li>
+<li><a href="https://linuxconfig.org/how-to-automatically-execute-shell-script-at-startup-boot-on-systemd-linux" target="_blank" rel="noopener">配置方法 2</a></li>
 </ol>
-<h2 id="2-Catkin工作原理"><a href="#2-Catkin工作原理" class="headerlink" title="2 Catkin工作原理"></a>2 Catkin工作原理</h2><p>Catkin编译的工作流程如下：</p>
-<ol>
-<li>首先在工作空间catkin_ws/src/下递归的查找其中每一个ROS的package.</li>
-<li>package中会有package.xml和CMakeLists.txt文件，Catkin编译系统依据CMakeLists.txt文件，从而生成makefiles（放在catkin_ws/build/中）。</li>
-<li>然后make刚刚生成的makefiles等文件，编译链接生成可执行文件（放在catkin_ws/devel中）。<br>可以看出，Catkin就是将cmake与make指令做了一个封装从而完成整个编译过程的工具。</li>
-</ol>
-<h2 id="3-CMakeLists-txt文件解析"><a href="#3-CMakeLists-txt文件解析" class="headerlink" title="3 CMakeLists.txt文件解析"></a>3 CMakeLists.txt文件解析</h2><p>CMakeLists.txt原本是CMake编译系统的规则文件，而Catkin编译系统基本沿用了CMake的编译风格，只是针对ROS工程添加了一些宏定义。所以在写法上，catkin的CMakeLists.txt与CMake的基本一致。</p>
-<p>这个文件直接规定了这个package要依赖哪些package，要编译生成哪些目标，如何编译等等流程。它指定了由源码到目标文件的规则，catkin编译系统在工作时首先会找到每个package下的CMakeLists.txt，然后按照规则来编译构建。</p>
-<p>CMakeLists.txt的基本语法都还是按照CMake，而Catkin在其中加入了少量的宏，总体的结构如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required() #CMake的版本号</span><br><span class="line">project() #项目名称</span><br><span class="line">find_package() #找到编译需要的其他CMake/Catkin package</span><br><span class="line">catkin_python_setup() #catkin新加宏，打开catkin的Python Module的支持</span><br><span class="line">add_message_files() #catkin新加宏，添加自定义Message/Service/Action文件</span><br><span class="line">add_service_files()</span><br><span class="line">add_action_files()</span><br><span class="line">generate_message() #catkin新加宏，生成不同语言版本的msg/srv/action接口</span><br><span class="line">catkin_package() #catkin新加宏，生成当前package的cmake配置，供依赖本包的其他软件包调用</span><br><span class="line">add_library() #生成库</span><br><span class="line">add_executable() #生成可执行二进制文件</span><br><span class="line">add_dependencies() #定义目标文件依赖于其他目标文件，确保其他目标已被构建</span><br><span class="line">target_link_libraries() #链接</span><br><span class="line">catkin_add_gtest() #catkin新加宏，生成测试</span><br><span class="line">install() #安装至本机</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -371,8 +340,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/02/ROS学习笔记7-消息录制与回放/" rel="next" title="ROS学习笔记7_消息录制与回放">
-                <i class="fa fa-chevron-left"></i> ROS学习笔记7_消息录制与回放
+              <a href="/2018/08/02/ROS-ros-control/" rel="next" title="ROS-ros_control">
+                <i class="fa fa-chevron-left"></i> ROS-ros_control
               </a>
             
           </div>
@@ -380,10 +349,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/03/MoveIt!学习笔记1-System Architecture/" rel="prev" title="MoveIt!学习笔记1-System Architecture">
-                MoveIt!学习笔记1-System Architecture <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -435,17 +400,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -496,22 +452,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Catkin软件包（package）的特点"><span class="nav-number">1.</span> <span class="nav-text">1 Catkin软件包（package）的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Catkin工作原理"><span class="nav-number">2.</span> <span class="nav-text">2 Catkin工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-CMakeLists-txt文件解析"><span class="nav-number">3.</span> <span class="nav-text">3 CMakeLists.txt文件解析</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
